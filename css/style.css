@@ -1,0 +1,455 @@
+/* =========================================
+   1. RESET E VARIÁVEIS (Dark Mode Refinado)
+   ========================================= */
+:root {
+    --cor-fundo: #121212; /* Fundo principal (Cinza quase preto) */
+    --cor-secundaria: #1A1A1A; /* Fundo para criar quebra de seção (Cinza escuro) */
+    --cor-texto: #D1D1D1; /* Cinza claro para leitura confortável */
+    --cor-titulos: #FFFFFF; /* Branco puro para contraste nos títulos */
+    --cor-destaque: #FFD700; /* Amarelo da logo */
+    --cor-destaque-hover: #E6C200;
+    --cor-header-footer: #000000; /* Preto puro */
+    --altura-cabecalho: 75px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--altura-cabecalho);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    line-height: 1.6;
+}
+
+/* =========================================
+   2. CONTAINERS E ESTRUTURA GERAL
+   ========================================= */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.secao-site {
+    padding: 80px 0;
+}
+
+.fundo-cinza {
+    background-color: var(--cor-secundaria); /* Agora é escuro de verdade */
+}
+
+/* Títulos agora são brancos, exceto o H1 que puxa o amarelo para impacto */
+h1 {
+    color: var(--cor-destaque);
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+}
+
+h2, h3 {
+    color: var(--cor-titulos);
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+/* =========================================
+   2.5. HERO SECTION E DIFERENCIAIS
+   ========================================= */
+.hero-section {
+    padding-top: 120px; /* Mais espaço no topo por causa do cabeçalho */
+    padding-bottom: 80px;
+}
+
+.hero-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+}
+
+.hero-texto {
+    flex: 1; /* Ocupa metade da tela */
+}
+
+.hero-imagem {
+    flex: 1; /* Ocupa a outra metade */
+    display: flex;
+    justify-content: center;
+}
+
+.img-destaque {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidade */
+    border: 1px solid #333; /* Borda sutil de luxo */
+}
+
+/* Os Cards Premium */
+.diferenciais-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.diferencial-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--cor-secundaria);
+    padding: 15px 20px;
+    border-radius: 6px;
+    border-left: 4px solid var(--cor-destaque); /* Linha amarela indicando força */
+    transition: transform 0.3s;
+}
+
+.diferencial-card:hover {
+    transform: translateX(10px); /* Leve movimento ao passar o mouse */
+}
+
+.icone-amarelo {
+    font-size: 1.8rem;
+}
+
+.diferencial-card h4 {
+    color: var(--cor-titulos);
+    margin-bottom: 2px;
+    font-size: 1.05rem;
+}
+
+.diferencial-card p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+/* Responsividade: Como se comporta no celular */
+@media (max-width: 900px) {
+    .hero-container {
+        flex-direction: column; /* Empilha texto e imagem no celular */
+        text-align: left;
+    }
+    
+    .hero-imagem {
+        order: -1; /* Coloca a imagem acima do texto no celular, se preferir. Para manter abaixo, apague esta linha. */
+        margin-bottom: 30px;
+    }
+}
+/* =========================================
+   3. CABEÇALHO E TOP BAR
+   ========================================= */
+.topbar {
+    background-color: #050505; /* Fundo levemente mais escuro para contrastar com o texto */
+    color: #E0E0E0; /* Cinza bem claro, quase branco. Resolve o problema de leitura. */
+    font-size: 0.85rem;
+    padding: 10px 0; /* Um pouco mais de respiro (aumentei de 8px para 10px) */
+    border-bottom: 1px solid #333; /* Linha de divisão mais marcada */
+}
+
+.container-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topbar-info {
+    display: flex;
+    gap: 20px;
+}
+
+/* O Cabeçalho Principal */
+#cabecalho {
+    position: sticky; /* Substitui o fixed. Assim ele respeita a top bar e desce com a tela */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--altura-cabecalho);
+    background-color: var(--cor-header-footer);
+    border-bottom: 1px solid #222;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.container-header {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+}
+
+/* Menu de Navegação no centro */
+.menu-navegacao {
+    display: flex;
+    gap: 30px;
+}
+
+.menu-navegacao a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.menu-navegacao a:hover {
+    color: var(--cor-destaque);
+}
+
+/* Esconde o menu e a topbar no celular para não esmagar os elementos */
+@media (max-width: 850px) {
+    .menu-navegacao, .topbar {
+        display: none;
+    }
+}
+/* =========================================
+   4. BOTÕES (Amarelos com texto Preto)
+   ========================================= */
+.btn-orcamento-topo {
+    background-color: var(--cor-destaque);
+    color: #000000;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background-color 0.3s;
+}
+
+.btn-orcamento-topo:hover {
+    background-color: var(--cor-destaque-hover);
+}
+
+.btn-whatsapp-grande {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background-color: var(--cor-destaque);
+    color: #000000;
+    border: none;
+    padding: 16px 32px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-top: 20px;
+}
+
+.btn-whatsapp-grande:hover {
+    background-color: var(--cor-destaque-hover);
+    transform: translateY(-2px);
+}
+
+.btn-whatsapp-grande img {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0); /* Transforma o ícone do whats em preto para combinar */
+}
+
+/* =========================================
+   5. GRID DE MARCAS (Flexbox para equilíbrio visual)
+   ========================================= */
+.grid-marcas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px; /* Dá espaço de respiro entre as marcas */
+    margin-top: 50px;
+}
+
+.marca-item {
+    width: 100%;
+    max-width: 140px; /* Limite de largura para as logos muito horizontais */
+    height: auto;
+    max-height: 55px; /* Trava a altura para as logos mais quadradas não ficarem gigantes */
+    object-fit: contain;
+    filter: grayscale(100%) brightness(200%);
+    transition: filter 0.3s, transform 0.3s;
+}
+
+.marca-item:hover {
+    filter: grayscale(0%) brightness(100%);
+    transform: scale(1.08);
+}
+
+.marca-item:hover {
+    filter: grayscale(0%) brightness(100%);
+    transform: scale(1.05);
+}
+/* =========================================
+   6. CATÁLOGO DE MARCAS (Carrossel Infinito Premium)
+   ========================================= */
+.catalogo-marcas {
+    margin-top: 80px;
+    text-align: center;
+    padding-top: 50px;
+    border-top: 1px solid #333;
+}
+
+.catalogo-marcas h3 {
+    color: var(--cor-titulos);
+    font-size: 1.4rem;
+}
+
+/* Container do Slider com efeito de sombra nas bordas */
+.slider-marcas {
+    width: 100%;
+    overflow: hidden; /* Esconde o que sai da tela */
+    position: relative;
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+/* Gradientes laterais para as logos "sumirem" nas pontas */
+.slider-marcas::before,
+.slider-marcas::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    z-index: 2;
+}
+
+.slider-marcas::before {
+    left: 0;
+    background: linear-gradient(to right, var(--cor-secundaria) 0%, transparent 100%);
+}
+
+.slider-marcas::after {
+    right: 0;
+    background: linear-gradient(to left, var(--cor-secundaria) 0%, transparent 100%);
+}
+
+/* A pista que vai rodar. Largura alta para caber tudo. */
+.slider-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: scrollSlider 25s linear infinite; /* 25 segundos para dar a volta */
+}
+
+/* Interrompe a animação se o cliente passar o mouse para olhar uma marca específica */
+.slider-marcas:hover .slider-track {
+    animation-play-state: paused;
+}
+
+.slide-logo {
+    width: 120px; /* Menor que as marcas principais */
+    height: 45px;
+    object-fit: contain;
+    margin: 0 40px; /* Distância entre as marcas */
+    filter: grayscale(100%) opacity(0.5); /* Mais discretas para não roubar a atenção do topo */
+    transition: filter 0.3s, opacity 0.3s, transform 0.3s;
+}
+
+.slide-logo:hover {
+    filter: grayscale(0%) opacity(1);
+    transform: scale(1.1);
+}
+
+/* A Mágica do Loop */
+@keyframes scrollSlider {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Move 50% para a esquerda (como dobramos a lista no HTML, o meio é o fim da primeira lista) */
+        transform: translateX(-50%);
+    }
+}
+/* =========================================
+   7. RODAPÉ
+   ========================================= */
+main {
+    margin-top: var(--altura-cabecalho);
+}
+
+footer {
+    background-color: var(--cor-header-footer);
+    color: #888;
+    padding: 50px 0;
+    border-top: 1px solid #222;
+}
+
+.text-center {
+    text-align: center;
+}
+/* =========================================
+   8. SEÇÃO CALL TO ACTION (Orçamento)
+   ========================================= */
+#orcamento {
+    padding: 100px 0; /* Mais espaço de respiro para destacar a caixa */
+}
+
+.cta-box {
+    background: linear-gradient(145deg, #1c1c1c 0%, #0a0a0a 100%);
+    border: 1px solid #333;
+    border-top: 4px solid var(--cor-destaque); /* A linha amarela de fechamento */
+    border-radius: 12px;
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); /* Sombra pesada para fazer o card flutuar */
+    max-width: 800px;
+    margin: 0 auto; /* Centraliza a caixa perfeitamente na tela */
+}
+
+.cta-box h2 {
+    font-size: 2.2rem;
+    color: var(--cor-titulos);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.cta-box p {
+    color: #b3b3b3;
+    font-size: 1.15rem;
+    margin-bottom: 40px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* O texto de segurança abaixo do botão */
+.cta-microcopy {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #777;
+    font-style: italic;
+}
+
+/* Ajuste para não esmagar no celular */
+@media (max-width: 768px) {
+    .cta-box {
+        padding: 40px 20px;
+    }
+    .cta-box h2 {
+        font-size: 1.8rem;
+    }
+}
