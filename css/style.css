@@ -225,6 +225,15 @@ p {
         display: none;
     }
 }
+/* Trava a altura das colunas para não esticarem se um campo novo aparecer */
+.alinhamento-topo {
+    align-items: flex-start;
+}
+
+/* Garante que o select principal do Serviço ocupe 100% da tela */
+.form-grupo > select#tipo-servico {
+    width: 100%;
+}
 /* =========================================
    4. BOTÕES (Amarelos com texto Preto)
    ========================================= */
@@ -295,11 +304,6 @@ p {
 .marca-item:hover {
     filter: grayscale(0%) brightness(100%);
     transform: scale(1.08);
-}
-
-.marca-item:hover {
-    filter: grayscale(0%) brightness(100%);
-    transform: scale(1.05);
 }
 /* =========================================
    6. CATÁLOGO DE MARCAS (Carrossel Infinito Premium)
@@ -451,5 +455,424 @@ footer {
     }
     .cta-box h2 {
         font-size: 1.8rem;
+    }
+}
+/* =========================================
+   9. FORMULÁRIO DE ORÇAMENTO (Layout Melhorado)
+   ========================================= */
+.formulario-whatsapp {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-grupo {
+    display: flex;
+    gap: 25px; /* Aumentei de 15px para 25px para dar respiro entre as colunas */
+    margin-bottom: 25px; /* Mais espaço entre uma linha e outra */
+}
+
+/* O pacote que segura o Rótulo e a Caixa juntos */
+.campo-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espaço entre o Rótulo e a Caixa de digitação */
+    text-align: left;
+}
+
+.campo-wrapper.w-100 {
+    width: 100%;
+    flex: none; /* Impede de se comportar como coluna dividida */
+}
+
+.campo-wrapper label {
+    font-size: 0.95rem;
+    color: #cccccc;
+    font-weight: 500;
+}
+
+.campo-wrapper input,
+.campo-wrapper select {
+    padding: 15px;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: var(--cor-texto);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+}
+
+.campo-wrapper input:focus,
+.campo-wrapper select:focus {
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+}
+
+.btn-form {
+    width: 100%;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Trava a altura das colunas */
+.alinhamento-topo {
+    align-items: flex-start;
+}
+
+.coluna-dinamica {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.campo-oculto {
+    display: none; 
+}
+
+/* Classes de controle */
+.escondido {
+    display: none !important;
+}
+
+.alerta-servico-simples {
+    color: var(--cor-texto);
+    font-size: 1.05rem;
+    padding: 15px;
+    border-left: 3px solid var(--cor-destaque);
+    background-color: #1a1a1a;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+#btn-enviar-form:disabled {
+    background-color: #444;
+    color: #888;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@media (max-width: 650px) {
+    .form-grupo {
+        flex-direction: column; /* Empilha no celular */
+        gap: 20px;
+    }
+}
+
+/* =========================================
+   10. OTIMIZAÇÃO PARA TOUCH (CELULARES E TABLETS)
+   ========================================= */
+
+/* A regra (hover: none) detecta telas de toque (sem mouse) */
+@media (hover: none) {
+    /* Desativa o salto lateral dos cards de benefícios */
+    .diferencial-card:hover {
+        transform: none !important;
+    }
+
+    /* Como não há mouse, as marcas do carrossel ficam um pouco mais visíveis por padrão */
+    .slide-logo {
+        opacity: 0.75; 
+    }
+    
+    /* Remove o zoom das marcas ao tocar na tela */
+    .slide-logo:hover {
+        transform: none !important;
+        opacity: 0.75 !important;
+    }
+}
+
+/* O FEEDBACK TÁTIL (Para todos os dispositivos) */
+/* Quando o cliente aperta um botão ou card, ele "afunda" levemente, confirmando a ação */
+.btn-whatsapp-grande:active,
+.btn-orcamento-topo:active,
+.diferencial-card:active {
+    transform: scale(0.97) !important;
+    transition: transform 0.1s; /* Transição super rápida para dar a sensação de clique físico */
+}
+/* Restaura a cor e opacidade das marcas apenas em telas menores */
+@media (max-width: 768px) {
+    .slide-logo {
+        filter: grayscale(0%) opacity(1) !important;
+    }
+}
+/* =========================================
+   11. BOTÃO WHATSAPP FLUTUANTE (Com Animação Pulse)
+   ========================================= */
+.whatsapp-flutuante {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366; 
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+    z-index: 9999; /* Garante que fique por cima de absolutamente tudo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+    /* A mágica para atrair o olho na visão periférica */
+    animation: pulso-whatsapp 2s infinite; 
+}
+
+/* Deixa o ícone com o tamanho correto dentro da bolinha */
+.whatsapp-flutuante img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    /* Se o seu ícone for preto, a linha abaixo o transforma em branco. 
+       Se o seu ícone já for branco, você pode apagar a linha do filter. */
+    filter: brightness(0) invert(1); 
+}
+
+/* O que acontece na tela do computador ao passar o mouse */
+.whatsapp-flutuante:hover {
+    transform: scale(1.1);
+    animation: none; /* Para de pulsar quando o cliente foca nele */
+}
+
+/* O Efeito de Pulso (ondas expandindo) */
+@keyframes pulso-whatsapp {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+/* =========================================
+   12. PROVA SOCIAL E ESTRUTURA (Barracão)
+   ========================================= */
+#prova-social {
+    background-color: #0d0d0d;
+    padding: 80px 0;
+    border-top: 1px solid #222;
+}
+
+.grid-prova-social {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+/* Galeria de Fotos */
+.galeria-estrutura {
+    flex: 1.5;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.foto-loja {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #333;
+    /* O truque para encaixar a foto clara no Dark Mode */
+    filter: brightness(0.75) contrast(1.15) saturate(0.8);
+    transition: filter 0.3s;
+}
+
+/* Devolve o brilho original apenas quando o cliente passa o mouse ou clica */
+.foto-loja:hover {
+    filter: brightness(1) contrast(1) saturate(1);
+}
+
+.fotos-menores {
+    display: flex;
+    gap: 15px;
+}
+
+.fotos-menores img {
+    width: 50%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #333;
+    /* Reduz o estouro da luz branca e puxa o contraste dos elevadores pretos */
+    filter: brightness(0.8) contrast(1.1); 
+    transition: filter 0.3s;
+}
+
+.fotos-menores img:hover {
+    filter: brightness(0.95) contrast(1.1);
+}
+
+/* Card de Depoimento */
+.card-depoimento {
+    flex: 1;
+    background: linear-gradient(145deg, #1a1a1a, #111);
+    padding: 40px 30px;
+    border-radius: 12px;
+    border-top: 4px solid var(--cor-destaque);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.estrelas {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.texto-depoimento {
+    font-size: 1.15rem;
+    color: #ccc;
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.autor-depoimento {
+    display: block;
+    color: var(--cor-destaque);
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.selo-garantia {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+    .grid-prova-social {
+        flex-direction: column;
+    }
+    .foto-loja {
+        height: 200px;
+    }
+    .fotos-menores img {
+        height: 120px;
+    }
+}
+/* =========================================
+   13. VITRINE DE PRODUTOS (Com Imagens Reais)
+   ========================================= */
+.grid-vitrine {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Cria 4 colunas exatas no computador */
+    gap: 25px;
+}
+
+.card-produto {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px; /* Reduzi o padding para caber a foto melhor */
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+/* O tratamento da imagem para encaixar no Dark Mode */
+.imagem-produto {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    filter: brightness(0.7) contrast(1.1); /* Escurece a luz estourada do teto */
+    transition: filter 0.3s;
+}
+
+.card-produto:hover {
+    border-color: var(--cor-destaque);
+    transform: translateY(-5px);
+}
+
+/* Quando o cliente passa o mouse, a foto "acende" revelando o detalhe */
+.card-produto:hover .imagem-produto {
+    filter: brightness(1) contrast(1.1);
+}
+
+.card-produto h3 {
+    color: var(--cor-destaque);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.card-produto p {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Empurra a tag da marca sempre para o fundo do card */
+}
+
+.marcas-destaque {
+    display: inline-block;
+    background-color: #2a2a2a;
+    color: #aaa;
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Otimização para Touch (Celulares) */
+@media (hover: none) {
+    .card-produto:hover {
+        transform: none !important;
+        border-color: #333 !important;
+    }
+    .card-produto:active {
+        transform: scale(0.97) !important;
+        border-color: var(--cor-destaque) !important;
+    }
+    .imagem-produto {
+        filter: brightness(0.9) contrast(1.1); /* Um pouco mais claro no celular por padrão */
+    }
+}
+
+/* Responsividade: Tablet (2 colunas) e Celular (1 coluna) */
+@media (max-width: 1024px) {
+    .grid-vitrine {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .grid-vitrine {
+        grid-template-columns: 1fr;
+    }
+    .imagem-produto {
+        height: 220px; /* Foto maior no celular */
+    }
+}
+.btn-header-destaque {
+    background-color: var(--cor-destaque);
+    color: #000 !important;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-header-destaque:hover {
+    background-color: #e6c200;
+    transform: scale(1.05);
+}
+
+/* Oculta o botão extra no celular, pois o ícone flutuante do WhatsApp já cumpre essa função lá */
+@media (max-width: 768px) {
+    .btn-header-destaque {
+        display: none;
     }
 }
