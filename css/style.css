@@ -280,30 +280,36 @@ p {
 }
 
 /* =========================================
-   5. GRID DE MARCAS (Flexbox para equilíbrio visual)
+   5. GRID DE MARCAS (Cinza no PC, Colorido no Celular)
    ========================================= */
 .grid-marcas {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 50px; /* Dá espaço de respiro entre as marcas */
+    gap: 50px; 
     margin-top: 50px;
 }
 
+/* Comportamento padrão para celulares (Telas menores): Cores originais atidadas */
 .marca-item {
     width: 100%;
-    max-width: 140px; /* Limite de largura para as logos muito horizontais */
+    max-width: 140px; 
     height: auto;
-    max-height: 55px; /* Trava a altura para as logos mais quadradas não ficarem gigantes */
+    max-height: 55px; 
     object-fit: contain;
-    filter: grayscale(100%) brightness(200%);
-    transition: filter 0.3s, transform 0.3s;
+    transition: transform 0.3s;
 }
 
-.marca-item:hover {
-    filter: grayscale(0%) brightness(100%);
-    transform: scale(1.08);
+/* Comportamento exclusivo para computadores (Telas maiores que 768px): Aplica o cinza e acende no hover */
+@media (min-width: 769px) {
+    .marca-item {
+        filter: grayscale(100%) brightness(200%);
+    }
+    .marca-item:hover {
+        filter: grayscale(0%) brightness(100%);
+        transform: scale(1.08);
+    }
 }
 /* =========================================
    6. CATÁLOGO DE MARCAS (Carrossel Infinito Premium)
@@ -364,17 +370,22 @@ p {
 }
 
 .slide-logo {
-    width: 120px; /* Menor que as marcas principais */
+    width: 120px;
     height: 45px;
     object-fit: contain;
-    margin: 0 40px; /* Distância entre as marcas */
-    filter: grayscale(100%) opacity(0.5); /* Mais discretas para não roubar a atenção do topo */
+    margin: 0 40px;
     transition: filter 0.3s, opacity 0.3s, transform 0.3s;
 }
 
-.slide-logo:hover {
-    filter: grayscale(0%) opacity(1);
-    transform: scale(1.1);
+/* No computador, o carrossel fica discreto em cinza e acende no hover */
+@media (min-width: 769px) {
+    .slide-logo {
+        filter: grayscale(100%) opacity(0.5);
+    }
+    .slide-logo:hover {
+        filter: grayscale(0%) opacity(1);
+        transform: scale(1.1);
+    }
 }
 
 /* A Mágica do Loop */
@@ -876,41 +887,4 @@ footer {
     .btn-header-destaque {
         display: none;
     }
-}
-/* =========================================
-   CORREÇÃO DA SEÇÃO EXCELÊNCIA COMPROVADA
-   ========================================= */
-
-/* Centraliza o título e o parágrafo da seção de marcas */
-#marcas.secao-site {
-    text-align: center;
-}
-
-#marcas.secao-site .container > h2,
-#marcas.secao-site .container > p {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Centraliza a grade de marcas principais */
-.grid-marcas {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    margin-top: 40px;
-}
-
-/* Força as logos principais e do carrossel a exibirem suas cores reais (removendo o cinza) */
-.marca-item,
-.slide-logo {
-    filter: grayscale(0%) brightness(100%) opacity(1) !important;
-}
-
-/* Efeito sutil ao passar o mouse nas logos */
-.marca-item:hover,
-.slide-logo:hover {
-    transform: scale(1.05);
 }
