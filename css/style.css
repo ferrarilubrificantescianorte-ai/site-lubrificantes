@@ -877,3 +877,40 @@ footer {
         display: none;
     }
 }
+/* =========================================
+   CORREÇÃO DA SEÇÃO EXCELÊNCIA COMPROVADA
+   ========================================= */
+
+/* Centraliza o título e o parágrafo da seção de marcas */
+#marcas.secao-site {
+    text-align: center;
+}
+
+#marcas.secao-site .container > h2,
+#marcas.secao-site .container > p {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Centraliza a grade de marcas principais */
+.grid-marcas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* Força as logos principais e do carrossel a exibirem suas cores reais (removendo o cinza) */
+.marca-item,
+.slide-logo {
+    filter: grayscale(0%) brightness(100%) opacity(1) !important;
+}
+
+/* Efeito sutil ao passar o mouse nas logos */
+.marca-item:hover,
+.slide-logo:hover {
+    transform: scale(1.05);
+}
