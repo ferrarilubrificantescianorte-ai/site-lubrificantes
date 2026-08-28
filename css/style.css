@@ -851,7 +851,8 @@ footer {
         grid-template-columns: 1fr;
     }
     .imagem-produto {
-        height: 220px; /* Foto maior no celular */
+        height: 160px !important; /* Trava a altura para a foto não esticar verticalmente */
+        object-fit: cover !important;
     }
 }
 .btn-header-destaque {
