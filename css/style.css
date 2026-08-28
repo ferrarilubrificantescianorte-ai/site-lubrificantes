@@ -1,14 +1,13 @@
 /* =========================================
-   1. RESET E VARIÁVEIS (Dark Mode Refinado)
+   1. RESET E VARIÁVEIS 
    ========================================= */
 :root {
-    --cor-fundo: #121212; /* Fundo principal (Cinza quase preto) */
-    --cor-secundaria: #1A1A1A; /* Fundo para criar quebra de seção (Cinza escuro) */
-    --cor-texto: #D1D1D1; /* Cinza claro para leitura confortável */
-    --cor-titulos: #FFFFFF; /* Branco puro para contraste nos títulos */
-    --cor-destaque: #FFD700; /* Amarelo da logo */
+    --cor-secundaria: #1A1A1A; 
+    --cor-texto: #D1D1D1; 
+    --cor-titulos: #FFFFFF; 
+    --cor-destaque: #FFD700; 
     --cor-destaque-hover: #E6C200;
-    --cor-header-footer: #000000; /* Preto puro */
+    --cor-header-footer: #000000; 
     --altura-cabecalho: 75px;
 }
 
@@ -25,13 +24,14 @@ html {
 
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--cor-fundo);
+    background-color: #050505;
+    background-attachment: fixed; 
     color: var(--cor-texto);
     line-height: 1.6;
 }
 
 /* =========================================
-   2. CONTAINERS E ESTRUTURA GERAL
+   2. CONTAINERS, TIPOGRAFIA E FUNDOS
    ========================================= */
 .container {
     width: 90%;
@@ -43,11 +43,6 @@ body {
     padding: 80px 0;
 }
 
-.fundo-cinza {
-    background-color: var(--cor-secundaria); /* Agora é escuro de verdade */
-}
-
-/* Títulos agora são brancos, exceto o H1 que puxa o amarelo para impacto */
 h1 {
     color: var(--cor-destaque);
     font-size: 2.5rem;
@@ -66,98 +61,14 @@ p {
 }
 
 /* =========================================
-   2.5. HERO SECTION E DIFERENCIAIS
-   ========================================= */
-.hero-section {
-    padding-top: 120px; /* Mais espaço no topo por causa do cabeçalho */
-    padding-bottom: 80px;
-}
-
-.hero-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-}
-
-.hero-texto {
-    flex: 1; /* Ocupa metade da tela */
-}
-
-.hero-imagem {
-    flex: 1; /* Ocupa a outra metade */
-    display: flex;
-    justify-content: center;
-}
-
-.img-destaque {
-    width: 100%;
-    max-width: 500px;
-    border-radius: 8px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidade */
-    border: 1px solid #333; /* Borda sutil de luxo */
-}
-
-/* Os Cards Premium */
-.diferenciais-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 30px;
-}
-
-.diferencial-card {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    background-color: var(--cor-secundaria);
-    padding: 15px 20px;
-    border-radius: 6px;
-    border-left: 4px solid var(--cor-destaque); /* Linha amarela indicando força */
-    transition: transform 0.3s;
-}
-
-.diferencial-card:hover {
-    transform: translateX(10px); /* Leve movimento ao passar o mouse */
-}
-
-.icone-amarelo {
-    font-size: 1.8rem;
-}
-
-.diferencial-card h4 {
-    color: var(--cor-titulos);
-    margin-bottom: 2px;
-    font-size: 1.05rem;
-}
-
-.diferencial-card p {
-    margin-bottom: 0;
-    font-size: 0.9rem;
-    color: #999;
-}
-
-/* Responsividade: Como se comporta no celular */
-@media (max-width: 900px) {
-    .hero-container {
-        flex-direction: column; /* Empilha texto e imagem no celular */
-        text-align: left;
-    }
-    
-    .hero-imagem {
-        order: -1; /* Coloca a imagem acima do texto no celular, se preferir. Para manter abaixo, apague esta linha. */
-        margin-bottom: 30px;
-    }
-}
-/* =========================================
    3. CABEÇALHO E TOP BAR
    ========================================= */
 .topbar {
-    background-color: #050505; /* Fundo levemente mais escuro para contrastar com o texto */
-    color: #E0E0E0; /* Cinza bem claro, quase branco. Resolve o problema de leitura. */
+    background-color: #050505; 
+    color: #E0E0E0; 
     font-size: 0.85rem;
-    padding: 10px 0; /* Um pouco mais de respiro (aumentei de 8px para 10px) */
-    border-bottom: 1px solid #333; /* Linha de divisão mais marcada */
+    padding: 10px 0; 
+    border-bottom: 1px solid #333; 
 }
 
 .container-topbar {
@@ -171,9 +82,8 @@ p {
     gap: 20px;
 }
 
-/* O Cabeçalho Principal */
 #cabecalho {
-    position: sticky; /* Substitui o fixed. Assim ele respeita a top bar e desce com a tela */
+    position: sticky; 
     top: 0;
     left: 0;
     width: 100%;
@@ -201,7 +111,6 @@ p {
     object-fit: contain;
 }
 
-/* Menu de Navegação no centro */
 .menu-navegacao {
     display: flex;
     gap: 30px;
@@ -219,23 +128,32 @@ p {
     color: var(--cor-destaque);
 }
 
-/* Esconde o menu e a topbar no celular para não esmagar os elementos */
-@media (max-width: 850px) {
-    .menu-navegacao, .topbar {
-        display: none;
-    }
-}
-/* Trava a altura das colunas para não esticarem se um campo novo aparecer */
-.alinhamento-topo {
-    align-items: flex-start;
+.btn-mobile-orcamento {
+    display: none; 
 }
 
-/* Garante que o select principal do Serviço ocupe 100% da tela */
-.form-grupo > select#tipo-servico {
-    width: 100%;
+@media (max-width: 850px) {
+    .topbar, .menu-navegacao {
+        display: none; 
+    }
+    .container-header {
+        justify-content: space-between;
+        padding: 0 10px;
+    }
+    .btn-mobile-orcamento {
+        display: block;
+        background-color: var(--cor-destaque);
+        color: #000;
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: 0.85rem;
+    }
 }
+
 /* =========================================
-   4. BOTÕES (Amarelos com texto Preto)
+   4. BOTÕES E CTAS
    ========================================= */
 .btn-orcamento-topo {
     background-color: var(--cor-destaque);
@@ -266,6 +184,8 @@ p {
     cursor: pointer;
     transition: all 0.3s;
     margin-top: 20px;
+    width: 100%;
+    justify-content: center;
 }
 
 .btn-whatsapp-grande:hover {
@@ -276,404 +196,193 @@ p {
 .btn-whatsapp-grande img {
     width: 24px;
     height: 24px;
-    filter: brightness(0); /* Transforma o ícone do whats em preto para combinar */
+    filter: brightness(0); 
 }
 
-/* =========================================
-   5. GRID DE MARCAS (Cinza no PC, Colorido no Celular)
-   ========================================= */
-.grid-marcas {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 50px; 
-    margin-top: 50px;
-}
-
-/* Comportamento padrão para celulares (Telas menores): Cores originais atidadas */
-.marca-item {
-    width: 100%;
-    max-width: 140px; 
-    height: auto;
-    max-height: 55px; 
-    object-fit: contain;
-    transition: transform 0.3s;
-}
-
-/* Comportamento exclusivo para computadores (Telas maiores que 768px): Aplica o cinza e acende no hover */
-@media (min-width: 769px) {
-    .marca-item {
-        filter: grayscale(100%) brightness(200%);
-    }
-    .marca-item:hover {
-        filter: grayscale(0%) brightness(100%);
-        transform: scale(1.08);
-    }
-}
-/* =========================================
-   6. CATÁLOGO DE MARCAS (Carrossel Infinito Premium)
-   ========================================= */
-.catalogo-marcas {
-    margin-top: 80px;
-    text-align: center;
-    padding-top: 50px;
-    border-top: 1px solid #333;
-}
-
-.catalogo-marcas h3 {
-    color: var(--cor-titulos);
-    font-size: 1.4rem;
-}
-
-/* Container do Slider com efeito de sombra nas bordas */
-.slider-marcas {
-    width: 100%;
-    overflow: hidden; /* Esconde o que sai da tela */
-    position: relative;
-    margin-top: 40px;
-    padding: 20px 0;
-}
-
-/* Gradientes laterais para as logos "sumirem" nas pontas */
-.slider-marcas::before,
-.slider-marcas::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 60px;
-    height: 100%;
-    z-index: 2;
-}
-
-.slider-marcas::before {
-    left: 0;
-    background: linear-gradient(to right, var(--cor-secundaria) 0%, transparent 100%);
-}
-
-.slider-marcas::after {
-    right: 0;
-    background: linear-gradient(to left, var(--cor-secundaria) 0%, transparent 100%);
-}
-
-/* A pista que vai rodar. Largura alta para caber tudo. */
-.slider-track {
-    display: flex;
-    align-items: center;
-    width: max-content;
-    animation: scrollSlider 25s linear infinite; /* 25 segundos para dar a volta */
-}
-
-/* Interrompe a animação se o cliente passar o mouse para olhar uma marca específica */
-.slider-marcas:hover .slider-track {
-    animation-play-state: paused;
-}
-
-.slide-logo {
-    width: 120px;
-    height: 45px;
-    object-fit: contain;
-    margin: 0 40px;
-    transition: filter 0.3s, opacity 0.3s, transform 0.3s;
-}
-
-/* No computador, o carrossel fica discreto em cinza e acende no hover */
-@media (min-width: 769px) {
-    .slide-logo {
-        filter: grayscale(100%) opacity(0.5);
-    }
-    .slide-logo:hover {
-        filter: grayscale(0%) opacity(1);
-        transform: scale(1.1);
-    }
-}
-
-/* A Mágica do Loop */
-@keyframes scrollSlider {
-    0% {
-        transform: translateX(0);
-    }
-    100% {
-        /* Move 50% para a esquerda (como dobramos a lista no HTML, o meio é o fim da primeira lista) */
-        transform: translateX(-50%);
-    }
-}
-/* =========================================
-   7. RODAPÉ
-   ========================================= */
-main {
-    margin-top: var(--altura-cabecalho);
-}
-
-footer {
-    background-color: var(--cor-header-footer);
-    color: #888;
-    padding: 50px 0;
-    border-top: 1px solid #222;
-}
-
-.text-center {
-    text-align: center;
-}
-/* =========================================
-   8. SEÇÃO CALL TO ACTION (Orçamento)
-   ========================================= */
-#orcamento {
-    padding: 100px 0; /* Mais espaço de respiro para destacar a caixa */
-}
-
-.cta-box {
-    background: linear-gradient(145deg, #1c1c1c 0%, #0a0a0a 100%);
-    border: 1px solid #333;
-    border-top: 4px solid var(--cor-destaque); /* A linha amarela de fechamento */
-    border-radius: 12px;
-    padding: 60px 40px;
-    text-align: center;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); /* Sombra pesada para fazer o card flutuar */
-    max-width: 800px;
-    margin: 0 auto; /* Centraliza a caixa perfeitamente na tela */
-}
-
-.cta-box h2 {
-    font-size: 2.2rem;
-    color: var(--cor-titulos);
-    margin-bottom: 20px;
-    line-height: 1.3;
-}
-
-.cta-box p {
-    color: #b3b3b3;
-    font-size: 1.15rem;
-    margin-bottom: 40px;
-    max-width: 650px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* O texto de segurança abaixo do botão */
-.cta-microcopy {
-    display: block;
-    margin-top: 15px;
+.btn-header-destaque {
+    background-color: var(--cor-destaque);
+    color: #000 !important;
+    padding: 8px 18px;
+    border-radius: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
     font-size: 0.9rem;
-    color: #777;
-    font-style: italic;
+    transition: transform 0.2s, background-color 0.2s;
 }
 
-/* Ajuste para não esmagar no celular */
+.btn-header-destaque:hover {
+    background-color: #e6c200;
+    transform: scale(1.05);
+}
+
 @media (max-width: 768px) {
-    .cta-box {
-        padding: 40px 20px;
-    }
-    .cta-box h2 {
-        font-size: 1.8rem;
+    .btn-header-destaque {
+        display: none;
     }
 }
+
 /* =========================================
-   9. FORMULÁRIO DE ORÇAMENTO (Layout Melhorado)
+   5. HERO SECTION E DIFERENCIAIS
    ========================================= */
-.formulario-whatsapp {
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
+.hero-section {
+    background-image: url('../assets/img/imagem-hero.webp'); 
+    background-size: cover;
+    background-position: center right; 
+    background-repeat: no-repeat;
+    padding-top: 150px; 
+    padding-bottom: 120px;
 }
 
-.form-grupo {
+.hero-container {
     display: flex;
-    gap: 25px; /* Aumentei de 15px para 25px para dar respiro entre as colunas */
-    margin-bottom: 25px; /* Mais espaço entre uma linha e outra */
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
 }
 
-/* O pacote que segura o Rótulo e a Caixa juntos */
-.campo-wrapper {
+.hero-texto {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 8px; /* Espaço entre o Rótulo e a Caixa de digitação */
-    text-align: left;
+    max-width: 650px; 
 }
 
-.campo-wrapper.w-100 {
-    width: 100%;
-    flex: none; /* Impede de se comportar como coluna dividida */
-}
-
-.campo-wrapper label {
-    font-size: 0.95rem;
-    color: #cccccc;
-    font-weight: 500;
-}
-
-.campo-wrapper input,
-.campo-wrapper select {
-    padding: 15px;
-    background-color: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 6px;
-    color: var(--cor-texto);
-    font-size: 1rem;
-    outline: none;
-    transition: border-color 0.3s, box-shadow 0.3s;
-    width: 100%;
-}
-
-.campo-wrapper input:focus,
-.campo-wrapper select:focus {
-    border-color: var(--cor-destaque);
-    box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
-}
-
-.btn-form {
-    width: 100%;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-/* Trava a altura das colunas */
-.alinhamento-topo {
-    align-items: flex-start;
-}
-
-.coluna-dinamica {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-.campo-oculto {
+.hero-imagem {
     display: none; 
 }
 
-/* Classes de controle */
-.escondido {
-    display: none !important;
+.diferenciais-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 30px;
 }
 
-.alerta-servico-simples {
-    color: var(--cor-texto);
-    font-size: 1.05rem;
-    padding: 15px;
-    border-left: 3px solid var(--cor-destaque);
-    background-color: #1a1a1a;
-    border-radius: 4px;
-    margin-bottom: 20px;
-}
-
-#btn-enviar-form:disabled {
-    background-color: #444;
-    color: #888;
-    cursor: not-allowed;
-    transform: none;
-}
-
-@media (max-width: 650px) {
-    .form-grupo {
-        flex-direction: column; /* Empilha no celular */
-        gap: 20px;
-    }
-}
-
-/* =========================================
-   10. OTIMIZAÇÃO PARA TOUCH (CELULARES E TABLETS)
-   ========================================= */
-
-/* A regra (hover: none) detecta telas de toque (sem mouse) */
-@media (hover: none) {
-    /* Desativa o salto lateral dos cards de benefícios */
-    .diferencial-card:hover {
-        transform: none !important;
-    }
-
-    /* Como não há mouse, as marcas do carrossel ficam um pouco mais visíveis por padrão */
-    .slide-logo {
-        opacity: 0.75; 
-    }
-    
-    /* Remove o zoom das marcas ao tocar na tela */
-    .slide-logo:hover {
-        transform: none !important;
-        opacity: 0.75 !important;
-    }
-}
-
-/* O FEEDBACK TÁTIL (Para todos os dispositivos) */
-/* Quando o cliente aperta um botão ou card, ele "afunda" levemente, confirmando a ação */
-.btn-whatsapp-grande:active,
-.btn-orcamento-topo:active,
-.diferencial-card:active {
-    transform: scale(0.97) !important;
-    transition: transform 0.1s; /* Transição super rápida para dar a sensação de clique físico */
-}
-/* Restaura a cor e opacidade das marcas apenas em telas menores */
-@media (max-width: 768px) {
-    .slide-logo {
-        filter: grayscale(0%) opacity(1) !important;
-    }
-}
-/* =========================================
-   11. BOTÃO WHATSAPP FLUTUANTE (Com Animação Pulse)
-   ========================================= */
-.whatsapp-flutuante {
-    position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 30px;
-    right: 30px;
-    background-color: #25d366; 
-    border-radius: 50%;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
-    z-index: 9999; /* Garante que fique por cima de absolutamente tudo */
+.diferencial-card {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 15px;
+    background-color: var(--cor-secundaria);
+    padding: 15px 20px;
+    border-radius: 6px;
+    border-left: 4px solid var(--cor-destaque); 
     transition: transform 0.3s;
-    /* A mágica para atrair o olho na visão periférica */
-    animation: pulso-whatsapp 2s infinite; 
 }
 
-/* Deixa o ícone com o tamanho correto dentro da bolinha */
-.whatsapp-flutuante img {
-    width: 35px;
-    height: 35px;
-    object-fit: contain;
-    /* Se o seu ícone for preto, a linha abaixo o transforma em branco. 
-       Se o seu ícone já for branco, você pode apagar a linha do filter. */
-    filter: brightness(0) invert(1); 
+.diferencial-card:hover {
+    transform: translateX(10px); 
 }
 
-/* O que acontece na tela do computador ao passar o mouse */
-.whatsapp-flutuante:hover {
-    transform: scale(1.1);
-    animation: none; /* Para de pulsar quando o cliente foca nele */
+.icone-amarelo {
+    font-size: 1.8rem;
 }
 
-/* O Efeito de Pulso (ondas expandindo) */
-@keyframes pulso-whatsapp {
-    0% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-    }
-    70% {
-        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+.diferencial-card h4 {
+    color: var(--cor-titulos);
+    margin-bottom: 2px;
+    font-size: 1.05rem;
+}
+
+.diferencial-card p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: #999;
+}
+
+@media (max-width: 900px) {
+    .hero-container {
+        flex-direction: column; 
+        text-align: left;
     }
 }
+
 /* =========================================
-   12. PROVA SOCIAL E ESTRUTURA (Barracão)
+   6. VITRINE DE PRODUTOS
    ========================================= */
-#prova-social {
-    background-color: #0d0d0d;
-    padding: 80px 0;
-    border-top: 1px solid #222;
+.grid-vitrine {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 25px;
 }
 
+.card-produto {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px; 
+    text-align: center;
+    transition: transform 0.3s, border-color 0.3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.imagem-produto {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    filter: brightness(0.7) contrast(1.1); 
+    transition: filter 0.3s;
+}
+
+.card-produto:hover {
+    border-color: var(--cor-destaque);
+    transform: translateY(-5px);
+}
+
+.card-produto:hover .imagem-produto {
+    filter: brightness(1) contrast(1.1);
+}
+
+.card-produto h3 {
+    color: var(--cor-destaque);
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.card-produto p {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    flex-grow: 1; 
+}
+
+.marcas-destaque {
+    display: inline-block;
+    background-color: #2a2a2a;
+    color: #aaa;
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 1024px) {
+    .grid-vitrine {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .grid-vitrine {
+        grid-template-columns: 1fr;
+    }
+    .imagem-produto {
+        height: 160px !important; 
+        object-fit: cover !important;
+    }
+}
+
+/* =========================================
+   7. ESTRUTURA E PROVA SOCIAL
+   ========================================= */
 .grid-prova-social {
     display: flex;
     gap: 40px;
     align-items: center;
 }
 
-/* Galeria de Fotos */
 .galeria-estrutura {
     flex: 1.5;
     display: flex;
@@ -687,12 +396,10 @@ footer {
     object-fit: cover;
     border-radius: 8px;
     border: 1px solid #333;
-    /* O truque para encaixar a foto clara no Dark Mode */
     filter: brightness(0.75) contrast(1.15) saturate(0.8);
     transition: filter 0.3s;
 }
 
-/* Devolve o brilho original apenas quando o cliente passa o mouse ou clica */
 .foto-loja:hover {
     filter: brightness(1) contrast(1) saturate(1);
 }
@@ -708,7 +415,6 @@ footer {
     object-fit: cover;
     border-radius: 8px;
     border: 1px solid #333;
-    /* Reduz o estouro da luz branca e puxa o contraste dos elevadores pretos */
     filter: brightness(0.8) contrast(1.1); 
     transition: filter 0.3s;
 }
@@ -717,7 +423,6 @@ footer {
     filter: brightness(0.95) contrast(1.1);
 }
 
-/* Card de Depoimento */
 .card-depoimento {
     flex: 1;
     background: linear-gradient(145deg, #1a1a1a, #111);
@@ -769,74 +474,271 @@ footer {
         height: 120px;
     }
 }
+
 /* =========================================
-   13. VITRINE DE PRODUTOS (Com Imagens Reais)
+   8. GRID E CATÁLOGO DE MARCAS
    ========================================= */
-.grid-vitrine {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Cria 4 colunas exatas no computador */
-    gap: 25px;
+.grid-marcas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 50px; 
+    margin-top: 50px;
 }
 
-.card-produto {
-    background-color: #1a1a1a;
-    border: 1px solid #333;
-    border-radius: 8px;
-    padding: 20px; /* Reduzi o padding para caber a foto melhor */
+.marca-item {
+    width: 100%;
+    max-width: 140px; 
+    height: auto;
+    max-height: 55px; 
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+@media (min-width: 769px) {
+    .marca-item {
+        filter: grayscale(100%) brightness(200%);
+    }
+    .marca-item:hover {
+        filter: grayscale(0%) brightness(100%);
+        transform: scale(1.08);
+    }
+}
+
+.catalogo-marcas {
+    margin-top: 80px;
     text-align: center;
-    transition: transform 0.3s, border-color 0.3s;
+    padding-top: 50px;
+}
+
+.catalogo-marcas h3 {
+    color: var(--cor-titulos);
+    font-size: 1.4rem;
+}
+
+.slider-marcas {
+    width: 100%;
+    overflow: hidden; 
+    position: relative;
+    margin-top: 40px;
+    padding: 20px 0;
+}
+
+.slider-marcas::before,
+.slider-marcas::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 60px;
+    height: 100%;
+    z-index: 2;
+}
+
+.slider-marcas::before {
+    left: 0;
+    background: linear-gradient(to right, #050505 0%, transparent 100%);
+}
+
+.slider-marcas::after {
+    right: 0;
+    background: linear-gradient(to left, #050505 0%, transparent 100%);
+}
+
+.slider-track {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    animation: scrollSlider 25s linear infinite; 
+}
+
+.slider-marcas:hover .slider-track {
+    animation-play-state: paused;
+}
+
+.slide-logo {
+    width: 120px;
+    height: 45px;
+    object-fit: contain;
+    margin: 0 40px;
+    transition: filter 0.3s, opacity 0.3s, transform 0.3s;
+}
+
+@media (min-width: 769px) {
+    .slide-logo {
+        filter: grayscale(100%) opacity(0.5);
+    }
+    .slide-logo:hover {
+        filter: grayscale(0%) opacity(1);
+        transform: scale(1.1);
+    }
+}
+
+@media (max-width: 768px) {
+    .slide-logo {
+        filter: grayscale(0%) opacity(1) !important;
+    }
+}
+
+@keyframes scrollSlider {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* =========================================
+   9. ORÇAMENTO (FORMULÁRIO E CTA)
+   ========================================= */
+#orcamento {
+    padding: 100px 0; 
+}
+
+.cta-box {
+    background: linear-gradient(145deg, #1c1c1c 0%, #0a0a0a 100%);
+    border: 1px solid #333;
+    border-top: 4px solid var(--cor-destaque); 
+    border-radius: 12px;
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6); 
+    max-width: 800px;
+    margin: 0 auto; 
+}
+
+.cta-box h2 {
+    font-size: 2.2rem;
+    color: var(--cor-titulos);
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.cta-box p {
+    color: #b3b3b3;
+    font-size: 1.15rem;
+    margin-bottom: 40px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-microcopy {
+    display: block;
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: #777;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .cta-box {
+        padding: 40px 20px;
+    }
+    .cta-box h2 {
+        font-size: 1.8rem;
+    }
+}
+
+.formulario-whatsapp {
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
 }
 
-/* O tratamento da imagem para encaixar no Dark Mode */
-.imagem-produto {
+.form-grupo {
+    display: flex;
+    gap: 25px; 
+    margin-bottom: 25px; 
+}
+
+.alinhamento-topo {
+    align-items: flex-start;
+}
+
+.campo-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; 
+    text-align: left;
+}
+
+.campo-wrapper.w-100 {
     width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    filter: brightness(0.7) contrast(1.1); /* Escurece a luz estourada do teto */
-    transition: filter 0.3s;
+    flex: none; 
 }
 
-.card-produto:hover {
-    border-color: var(--cor-destaque);
-    transform: translateY(-5px);
-}
-
-/* Quando o cliente passa o mouse, a foto "acende" revelando o detalhe */
-.card-produto:hover .imagem-produto {
-    filter: brightness(1) contrast(1.1);
-}
-
-.card-produto h3 {
-    color: var(--cor-destaque);
-    font-size: 1.3rem;
-    margin-bottom: 10px;
-}
-
-.card-produto p {
-    color: #ccc;
+.campo-wrapper label {
     font-size: 0.95rem;
-    line-height: 1.5;
+    color: #cccccc;
+    font-weight: 500;
+}
+
+.campo-wrapper input,
+.campo-wrapper select {
+    padding: 15px;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: var(--cor-texto);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+}
+
+.campo-wrapper input:focus,
+.campo-wrapper select:focus {
+    border-color: var(--cor-destaque);
+    box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+}
+
+.coluna-dinamica {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.escondido {
+    display: none !important;
+}
+
+.alerta-servico-simples {
+    color: var(--cor-texto);
+    font-size: 1.05rem;
+    padding: 15px;
+    border-left: 3px solid var(--cor-destaque);
+    background-color: #1a1a1a;
+    border-radius: 4px;
     margin-bottom: 20px;
-    flex-grow: 1; /* Empurra a tag da marca sempre para o fundo do card */
 }
 
-.marcas-destaque {
-    display: inline-block;
-    background-color: #2a2a2a;
-    color: #aaa;
-    font-size: 0.8rem;
-    padding: 6px 10px;
-    border-radius: 20px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+#btn-enviar-form:disabled {
+    background-color: #444;
+    color: #888;
+    cursor: not-allowed;
+    transform: none;
 }
 
-/* Otimização para Touch (Celulares) */
+@media (max-width: 650px) {
+    .form-grupo {
+        flex-direction: column; 
+        gap: 20px;
+    }
+}
+
+/* =========================================
+   10. OTIMIZAÇÃO TOUCH
+   ========================================= */
 @media (hover: none) {
+    .diferencial-card:hover {
+        transform: none !important;
+    }
+    .slide-logo {
+        opacity: 0.75; 
+    }
+    .slide-logo:hover {
+        transform: none !important;
+        opacity: 0.75 !important;
+    }
     .card-produto:hover {
         transform: none !important;
         border-color: #333 !important;
@@ -846,45 +748,79 @@ footer {
         border-color: var(--cor-destaque) !important;
     }
     .imagem-produto {
-        filter: brightness(0.9) contrast(1.1); /* Um pouco mais claro no celular por padrão */
+        filter: brightness(0.9) contrast(1.1); 
     }
 }
 
-/* Responsividade: Tablet (2 colunas) e Celular (1 coluna) */
-@media (max-width: 1024px) {
-    .grid-vitrine {
-        grid-template-columns: repeat(2, 1fr);
-    }
+.btn-whatsapp-grande:active,
+.btn-orcamento-topo:active,
+.diferencial-card:active {
+    transform: scale(0.97) !important;
+    transition: transform 0.1s; 
 }
 
-@media (max-width: 600px) {
-    .grid-vitrine {
-        grid-template-columns: 1fr;
-    }
-    .imagem-produto {
-        height: 160px !important; /* Trava a altura para a foto não esticar verticalmente */
-        object-fit: cover !important;
-    }
-}
-.btn-header-destaque {
-    background-color: var(--cor-destaque);
-    color: #000 !important;
-    padding: 8px 18px;
-    border-radius: 4px;
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 0.9rem;
-    transition: transform 0.2s, background-color 0.2s;
-}
-
-.btn-header-destaque:hover {
-    background-color: #e6c200;
-    transform: scale(1.05);
+/* =========================================
+   11. WHATSAPP FLUTUANTE
+   ========================================= */
+.whatsapp-flutuante {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #25d366; 
+    border-radius: 50%;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
+    z-index: 9999; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s;
+    animation: pulso-whatsapp 2s infinite; 
 }
 
-/* Oculta o botão extra no celular, pois o ícone flutuante do WhatsApp já cumpre essa função lá */
+.whatsapp-flutuante img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); 
+}
+
+.whatsapp-flutuante:hover {
+    transform: scale(1.1);
+    animation: none; 
+}
+
+@keyframes pulso-whatsapp {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
 @media (max-width: 768px) {
-    .btn-header-destaque {
-        display: none;
+    .whatsapp-flutuante {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        right: 15px;
+        animation: none; 
+        opacity: 0.85; 
     }
+    .whatsapp-flutuante img {
+        width: 26px;
+        height: 26px;
+    }
+}
+
+/* =========================================
+   12. RODAPÉ
+   ========================================= */
+footer {
+    background-color: var(--cor-header-footer);
+    color: #888;
+    padding: 50px 0;
+    border-top: 1px solid #222;
+}
+.text-center {
+    text-align: center;
 }

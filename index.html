@@ -2,15 +2,12 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <!-- Essa linha é crucial para o site não quebrar no celular -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ferrari Lubrificantes | Autoridade em Peças e Produtos Automotivos</title>
-    
-    <!-- Link para o CSS que faremos na próxima etapa -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- TOP BAR: Informações vitais para negócio local -->
+    <!-- TOP BAR -->
     <div class="topbar">
         <div class="container container-topbar">
             <div class="topbar-info">
@@ -30,25 +27,24 @@
             
             <nav class="menu-navegacao">
                 <ul style="display: flex; gap: 20px; align-items: center; list-style: none;">
-                    <li><a href="#sobre">Diferenciais</a></li>
-                    <li><a href="#prova-social">A Oficina</a></li>
+                    <li><a href="#inicio">Diferenciais</a></li>
                     <li><a href="#vitrine-produtos">Catálogo e Peças</a></li>
+                    <li><a href="#sobre">A Oficina</a></li>
                     <li><a href="#orcamento" class="btn-header-destaque">Fazer Orçamento</a></li>
                 </ul>
             </nav>
+            <a href="#orcamento" class="btn-mobile-orcamento">Orçamento Rápido</a>
         </div>
     </header>
 
     <main>
-        <!-- SEÇÃO 1: HERO (APRESENTAÇÃO PREMIUM) -->
-        <section id="sobre" class="secao-site hero-section">
+        <!-- 1. HERO (APRESENTAÇÃO) -->
+        <section id="inicio" class="secao-site hero-section">
             <div class="container hero-container">
-                
                 <div class="hero-texto">
                     <h1>O Centro Especializado em Troca de Óleo para Linha Leve e Pesada</h1>
                     <p>Nossa prioridade absoluta é a vida útil do seu motor. Trabalhamos com o portfólio completo de lubrificantes originais para garantir a especificação exata do seu manual — seja carro, moto ou caminhão. Nossa equipe é rigorosamente treinada e opera com padrões de excelência cirúrgica.</p>
                     
-                    <!-- CARDS DE BENEFÍCIOS ATUALIZADOS -->
                     <div class="diferenciais-grid">
                         <div class="diferencial-card">
                             <span class="icone-amarelo">🚛</span>
@@ -73,45 +69,11 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="hero-imagem">
-                    <img src="assets/img/fachada-frente.jpg" alt="Fachada da Ferrari Lubrificantes" class="img-destaque">
-                </div>
-
             </div>
         </section>
-        <!-- SEÇÃO PROVA SOCIAL E ESTRUTURA -->
-        <section id="prova-social" class="secao-site">
-            <div class="container">
-                <div class="cabecalho-secao text-center" style="margin-bottom: 40px;">
-                    <h2 style="font-size: 2.2rem; color: var(--cor-titulos);">Estrutura de Alta Performance</h2>
-                    <p style="color: #999; font-size: 1.1rem;">Limpeza, organização e precisão técnica em cada metro quadrado.</p>
-                </div>
 
-                <div class="grid-prova-social">
-                    <!-- Coluna das Fotos -->
-                    <div class="galeria-estrutura">
-                        <img src="assets/img/loja-interno.png" alt="Visão geral do nosso estoque" class="foto-loja">
-                        <div class="fotos-menores">
-                            <img src="assets/img/loja-box-oleo.jpg" alt="Box de troca de óleo">
-                            <img src="assets/img/servico-elevador.jpg" alt="Veículo em atendimento especializado no elevador">
-                        </div>
-                    </div>
-                    <!-- Coluna do Depoimento (Prova Social Real) -->
-                    <div class="card-depoimento">
-                        <div class="estrelas">⭐⭐⭐⭐⭐</div>
-                        <p class="texto-depoimento">"Sou cliente desde o antigo endereço e o atual demonstra o crescimento de uma empresa que presta serviços com excelência ao consumidor. Qualidade, organização e o mais relevante funcionários atenciosos desde a recepção aos mecânicos. !!!"</p>
-                        <span class="autor-depoimento">- Admilson Demori</span>
-                        <div class="selo-garantia">
-                            <span class="icone-amarelo">🛡️</span>
-                            <span>Avaliação verificada no Google</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- SEÇÃO VITRINE DE PRODUTOS -->
-        <section id="vitrine-produtos" class="secao-site" style="background-color: #111;">
+        <!-- 2. VITRINE DE PRODUTOS -->
+        <section id="vitrine-produtos" class="secao-site">
             <div class="container">
                 <div class="cabecalho-secao text-center" style="margin-bottom: 40px;">
                     <h2 style="font-size: 2.2rem; color: var(--cor-titulos);">Catálogo de Alta Performance</h2>
@@ -119,90 +81,112 @@
                 </div>
 
                 <div class="grid-vitrine">
-                    <!-- Produto 1: Óleos -->
                     <div class="card-produto">
-                        <img src="assets/img/vitrine-motul.jpg" alt="Estante de Óleos Motul" class="imagem-produto">
+                        <img src="assets/img/vitrine-motul.webp" alt="Estante de Óleos Motul" class="imagem-produto">
                         <h3>Lubrificantes</h3>
                         <p>Óleos sintéticos, semissintéticos e minerais. Atendemos linha leve e linha pesada.</p>
                         <span class="marcas-destaque">UNI / Motul / Lubrax</span>
                     </div>
 
-                    <!-- Produto 2: Filtros -->
                     <div class="card-produto">
-                        <img src="assets/img/vitrine-wega.jpg" alt="Estoque de Filtros Wega" class="imagem-produto">
+                        <img src="assets/img/vitrine-wega.webp" alt="Estoque de Filtros Wega" class="imagem-produto">
                         <h3>Filtros</h3>
                         <p>Filtros de óleo, ar, combustível e cabine. Proteção máxima para prolongar a vida do motor.</p>
                         <span class="marcas-destaque">Linha Completa Wega</span>
                     </div>
 
-                    <!-- Produto 3: Estética -->
                     <div class="card-produto">
-                        <img src="assets/img/vitrine-vonixx.jpg" alt="Produtos de Estética Vonixx" class="imagem-produto">
+                        <img src="assets/img/vitrine-vonixx.webp" alt="Produtos de Estética Vonixx" class="imagem-produto">
                         <h3>Estética Automotiva</h3>
                         <p>Ceras, vitrificadores, shampoos e renovadores. O acabamento de estúdio que o seu carro merece.</p>
                         <span class="marcas-destaque">Linha Vonixx</span>
                     </div>
 
-                    <!-- Produto 4: Baterias (Novo) -->
                     <div class="card-produto">
-                        <img src="assets/img/vitrine-moura.jpg" alt="Baterias Moura e Zetta" class="imagem-produto">
+                        <img src="assets/img/vitrine-moura.webp" alt="Baterias Moura e Zetta" class="imagem-produto">
                         <h3>Baterias</h3>
                         <p>Energia confiável e durabilidade para veículos leves, pesados e sistemas start-stop.</p>
                         <span class="marcas-destaque">Moura e Zetta</span>
                     </div>
                 </div>
-
                 <div class="text-center" style="margin-top: 40px;">
                     <a href="#orcamento" class="btn-orcamento-topo">Consultar Estoque e Valores</a>
                 </div>
             </div>
         </section>
-        <!-- SEÇÃO 2: NOSSAS MARCAS -->
-        <section id="marcas" class="secao-site fundo-cinza">
-            <div class="container">
-                <h2>Excelência Comprovada</h2>
-                <p>Somos revendedores autorizados das principais marcas do mercado automotivo.</p>
-                
-                <!-- DESTAQUE: APENAS REVENDA AUTORIZADA -->
-                <div class="grid-marcas">
-                    <!-- Substitua pelo nome correto dos seus arquivos -->
-                    <img src="assets/img/logo-moura.png" alt="Moura" class="marca-item">
-                    <img src="assets/img/logo-uni.png" alt="UNI Ingrax" class="marca-item">
-                    <img src="assets/img/logo-vonixx.png" alt="Vonixx" class="marca-item">
-                    <img src="assets/img/logo-wega.png" alt="Wega" class="marca-item">
-                    <img src="assets/img/logo-aeroflex.png" alt="Aeroflex" class="marca-item">
-                </div>
 
-                <!-- AUTORIDADE: ÓLEOS ORIGINAIS E CATÁLOGO -->
-                <div class="catalogo-marcas">
-                    <h3>Óleos Originais de Montadora e Linha Premium</h3>
-                    <p>Trabalhamos com o portfólio completo para entregar exatamente o que o manual exige:</p>
-                    
-                    <div class="slider-marcas">
-                        <div class="slider-track">
-                            <!-- LISTA 1 -->
-                            <img src="assets/img/logo-lubrax.jpg" alt="Lubrax" class="slide-logo">
-                            <img src="assets/img/logo-mobil.png" alt="Mobil" class="slide-logo">
-                            <img src="assets/img/logo-motul.png" alt="Motul" class="slide-logo">
-                            <img src="assets/img/logo-motorcraft.png" alt="Motorcraft" class="slide-logo">
-                            <img src="assets/img/logo-acdelco.png" alt="ACDelco" class="slide-logo">
-                            <img src="assets/img/logo-yamalube.png" alt="Yamalube" class="slide-logo">
-                            <img src="assets/img/logo-shell.png" alt="Shell" class="slide-logo">
-                            
-                            <!-- LISTA 2 (Cópia exata da 1 para o efeito de loop infinito não quebrar) -->
-                            <img src="assets/img/logo-lubrax.jpg" alt="Lubrax" class="slide-logo">
-                            <img src="assets/img/logo-mobil.png" alt="Mobil" class="slide-logo">
-                            <img src="assets/img/logo-motul.png" alt="Motul" class="slide-logo">
-                            <img src="assets/img/logo-motorcraft.png" alt="Motorcraft" class="slide-logo">
-                            <img src="assets/img/logo-acdelco.png" alt="ACDelco" class="slide-logo">
-                            <img src="assets/img/logo-yamalube.png" alt="Yamalube" class="slide-logo">
-                            <img src="assets/img/logo-shell.png" alt="Shell" class="slide-logo">
+        <!-- 3. SOBRE NÓS E ESTRUTURA -->
+        <section id="sobre" class="secao-site fundo-cinza">
+            <div class="container">
+                <div class="grid-prova-social alinhamento-topo">
+                    <div class="card-depoimento" style="border-top-color: var(--cor-destaque);">
+                        <span class="autor-depoimento" style="font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px;">Nossa História e Estrutura</span>
+                        <h2 style="color: var(--cor-titulos); font-size: 2rem; margin-bottom: 20px;">Tradição e Tecnologia em Cianorte</h2>
+                        <p class="texto-depoimento" style="font-style: normal; color: #d1d1d1;">
+                            A Ferrari Lubrificantes tem mais de 20 anos de experiência no ramo automotivo e conta com uma ampla gama de produtos, possuindo mais de 6000 itens em estoque para atender o seu veículo com agilidade e precisão.
+                        </p>
+                        <p class="texto-depoimento" style="font-style: normal; color: #b3b3b3; font-size: 1rem;">
+                            Unimos um espaço amplo e totalmente estruturado a equipamentos de ponta e equipe especializada, garantindo um atendimento ágil tanto para quem busca manutenção programada quanto para revisões rápidas de balcão.
+                        </p>
+                        <div class="selo-garantia">
+                            <span>⚡</span> Atendimento ágil, estrutura impecável e peças originais.
+                        </div>
+                    </div>
+
+                    <div class="galeria-estrutura">
+                        <img src="assets/img/interno-loja.webp" alt="Interior da Ferrari Lubrificantes em Cianorte" class="foto-loja">
+                        <div class="fotos-menores">
+                            <img src="assets/img/servico-elevador.webp" alt="Atendimento especializado no elevador" class="foto-loja">
+                            <img src="assets/img/fachada-frente.webp" alt="Detalhe da estrutura" class="foto-loja">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- SEÇÃO 3: ORÇAMENTO / WHATSAPP -->
+
+        <!-- 4. MARCAS E CATÁLOGO (Integrado via layout à seção Sobre) -->
+        <section id="marcas" class="secao-site fundo-cinza textura-ruido" style="padding-top: 0; border-top: none;">
+            <div class="container">
+                <h2 style="text-align: center;">Excelência Comprovada</h2>
+                <p style="text-align: center; margin-bottom: 50px;">Somos revendedores autorizados das principais marcas do mercado automotivo.</p>
+                
+                <div class="grid-marcas">
+                    <img src="assets/img/logo-moura.webp" alt="Moura" class="marca-item">
+                    <img src="assets/img/logo-uni.webp" alt="UNI Ingrax" class="marca-item">
+                    <img src="assets/img/logo-vonixx.webp" alt="Vonixx" class="marca-item">
+                    <img src="assets/img/logo-wega.webp" alt="Wega" class="marca-item">
+                    <img src="assets/img/logo-aeroflex.webp" alt="Aeroflex" class="marca-item">
+                </div>
+
+                <div class="catalogo-marcas" style="border-top: none; margin-top: 50px;">
+                    <h3>Óleos Originais de Montadora e Linha Premium</h3>
+                    <p>Trabalhamos com o portfólio completo para entregar exatamente o que o manual exige:</p>
+                    
+                    <div class="slider-marcas">
+                        <div class="slider-track">
+                            <!-- Loop Lista 1 -->
+                            <img src="assets/img/logo-lubrax.webp" alt="Lubrax" class="slide-logo">
+                            <img src="assets/img/logo-mobil.webp" alt="Mobil" class="slide-logo">
+                            <img src="assets/img/logo-motul.webp" alt="Motul" class="slide-logo">
+                            <img src="assets/img/logo-motorcraft.webp" alt="Motorcraft" class="slide-logo">
+                            <img src="assets/img/logo-acdelco.webp" alt="ACDelco" class="slide-logo">
+                            <img src="assets/img/logo-yamalube.webp" alt="Yamalube" class="slide-logo">
+                            <img src="assets/img/logo-shell.webp" alt="Shell" class="slide-logo">
+                            <!-- Loop Lista 2 -->
+                            <img src="assets/img/logo-lubrax.webp" alt="Lubrax" class="slide-logo">
+                            <img src="assets/img/logo-mobil.webp" alt="Mobil" class="slide-logo">
+                            <img src="assets/img/logo-motul.webp" alt="Motul" class="slide-logo">
+                            <img src="assets/img/logo-motorcraft.webp" alt="Motorcraft" class="slide-logo">
+                            <img src="assets/img/logo-acdelco.webp" alt="ACDelco" class="slide-logo">
+                            <img src="assets/img/logo-yamalube.webp" alt="Yamalube" class="slide-logo">
+                            <img src="assets/img/logo-shell.webp" alt="Shell" class="slide-logo">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. ORÇAMENTO / WHATSAPP -->
         <section id="orcamento" class="secao-site">
             <div class="container">
                 <div class="cta-box">
@@ -210,7 +194,6 @@
                     <p>Preencha os dados abaixo para um atendimento ágil. Nossa equipe receberá as informações e retornará com o orçamento exato.</p>
                     
                     <form id="form-orcamento" class="formulario-whatsapp">
-                        <!-- Etapa 1: Serviço -->
                         <div class="campo-wrapper" style="margin-bottom: 25px;">
                             <label for="tipo-servico">1. O que você precisa hoje?</label>
                             <select id="tipo-servico" required>
@@ -223,18 +206,13 @@
                             </select>
                         </div>
 
-                        <!-- Etapa 2: Veículo (Invisível no início) -->
                         <div id="bloco-dados-veiculo" class="escondido">
-                            
-                            <!-- Placa/Chassi -->
                             <div class="form-grupo">
                                 <div class="campo-wrapper w-100">
-                                    <label for="veiculo-identificacao">Placa ou Chassi (Opcional - Agiliza o atendimento)</label>
+                                    <label for="veiculo-identificacao">Chassi ou Placa (Opcional - Agiliza o atendimento)</label>
                                     <input type="text" id="veiculo-identificacao" placeholder="Ex: ABC-1234">
                                 </div>
                             </div>
-                            
-                            <!-- Modelo e Ano -->
                             <div class="form-grupo">
                                 <div class="campo-wrapper">
                                     <label for="veiculo-modelo">Modelo do Veículo</label>
@@ -245,8 +223,6 @@
                                     <input type="number" id="veiculo-ano" placeholder="Ex: 2020">
                                 </div>
                             </div>
-                            
-                            <!-- Motor e Combustível -->
                             <div class="form-grupo alinhamento-topo">
                                 <div class="coluna-dinamica campo-wrapper">
                                     <label for="veiculo-motor">Motorização</label>
@@ -262,9 +238,8 @@
                                         <option value="Outro">Acima de 2.0 / Outro</option>
                                         <option value="Não sei informar">Não sei informar</option>
                                     </select>
-                                    <!-- A caixa de texto extra precisa de margem para desgrudar do select -->
                                     <input type="text" id="motor-outro" placeholder="Qual? Ex: 2.8" class="escondido" style="margin-top: 10px; width: 100%;">
-
+                                </div>
                                 <div class="coluna-dinamica campo-wrapper">
                                     <label for="veiculo-combustivel">Combustível</label>
                                     <select id="veiculo-combustivel">
@@ -275,8 +250,6 @@
                                     </select>
                                 </div>
                             </div>
-                            
-                            <!-- Câmbio -->
                             <div class="form-grupo escondido" id="bloco-cambio">
                                 <div class="campo-wrapper w-100">
                                     <label for="tipo-cambio">Tipo de Transmissão</label>
@@ -290,7 +263,6 @@
                             </div>
                         </div>
 
-                        <!-- Etapa 3: Mensagem para Radiador/Outros -->
                         <div id="bloco-mensagem-direta" class="escondido">
                             <p class="alerta-servico-simples">Para este serviço, não precisamos dos dados do carro agora. Clique abaixo para falar direto com nosso especialista.</p>
                         </div>
@@ -299,12 +271,37 @@
                             Selecione um serviço acima
                         </button>
                     </form>
-                    
                     <span class="cta-microcopy">Nenhum dado é salvo no site. O envio é feito direto pelo seu aplicativo.</span>
                 </div>
             </div>
         </section>
+
+        <!-- 6. LOCALIZAÇÃO / MAPA -->
+        <section id="localizacao" class="secao-site" style="border-top: 1px solid #222;">
+            <div class="container text-center">
+                <h2>Onde Estamos</h2>
+                <p style="color: var(--cor-texto); margin-bottom: 30px;">
+                    Venha nos fazer uma visita ou traga seu veículo para uma avaliação rápida. Estamos localizados em Cianorte - PR.
+                </p>
+                <div style="border-radius: 12px; overflow: hidden; border: 1px solid #333; box-shadow: 0 15px 30px rgba(0,0,0,0.5);">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3179.5285617892832!2d-52.615967590212904!3d-23.664341573933452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ed5a1e1da2dfc1%3A0xbb1bdc50b357a999!2sFerrari%20Lubrificantes%20e%20Baterias!5e1!3m2!1spt-BR!2sbr!4v1787939450227!5m2!1spt-BR!2sbr" 
+                        width="100%" 
+                        height="400" 
+                        style="border:0; filter: contrast(1.1) brightness(0.9);" 
+                        allowfullscreen="" 
+                        loading="lazy">
+                    </iframe>
+                </div>
+                <div style="margin-top: 30px;">
+                    <a href="https://maps.google.com/?q=Ferrari+Lubrificantes+Cianorte" target="_blank" class="btn-orcamento-topo" style="display: inline-block; padding: 14px 28px; font-size: 1.1rem;">
+                        📍 Abrir Rota no GPS / Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
     </main>
+
     <!-- RODAPÉ -->
     <footer>
         <div class="container text-center">
@@ -315,7 +312,8 @@
     </footer>
 
     <script src="js/main.js"></script>
-    <!-- BOTÃO WHATSAPP FLUTUANTE (Rota de Fuga) -->
+
+    <!-- BOTÃO WHATSAPP FLUTUANTE -->
     <a href="https://wa.me/5544999998979?text=Olá!%20Estou%20no%20site%20e%20gostaria%20de%20falar%20com%20um%20atendente." class="whatsapp-flutuante" target="_blank" rel="noopener noreferrer">
         <img src="assets/icons/icone-whatsapp.png" alt="Atendimento Rápido">
     </a>
