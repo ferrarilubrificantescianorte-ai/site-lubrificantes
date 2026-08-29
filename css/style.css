@@ -292,6 +292,13 @@ p {
         flex-direction: column; 
         text-align: left;
     }
+    /* Ajuste exclusivo para a imagem de fundo no celular */
+    .hero-section {
+        /* Cria um degradê escuro (70% a 95% de opacidade) por cima da foto */
+        background-image: linear-gradient(to bottom, rgba(5, 5, 5, 0.7), rgba(5, 5, 5, 0.95)), url('../assets/img/imagem-hero.webp');
+        background-position: 80% center; /* Empurra o brilho do motor mais para a direita, tirando-o do centro do texto */
+        padding-top: 100px; /* Reduz o espaço excessivo no topo da tela do celular */
+    }
 }
 
 /* =========================================
@@ -467,9 +474,17 @@ p {
     .grid-prova-social {
         flex-direction: column;
     }
+    
+    /* Quebra o bloqueio esquerdo e força os blocos a usarem 100% da tela */
+    .card-depoimento,
+    .galeria-estrutura {
+        width: 100%;
+    }
+
     .foto-loja {
         height: 200px;
     }
+    
     .fotos-menores img {
         height: 120px;
     }
