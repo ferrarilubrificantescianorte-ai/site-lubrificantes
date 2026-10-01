@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Catálogo de produtos da Ferrari Lubrificantes em Cianorte-PR: óleos, filtros, baterias e estética automotiva. Monte seu pedido e receba os valores pelo WhatsApp.">
+    <title>Catálogo de Produtos | Ferrari Lubrificantes</title>
+    <link rel="icon" type="image/png" href="assets/icons/Logo-SF.PNG">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/catalogo.css">
+</head>
+<body>
+    <header id="cabecalho">
+        <div class="container-header">
+            <a href="index.html"><img src="assets/icons/logo-empresa.jpg" alt="Logo da Empresa" class="logo"></a>
+            <nav class="menu-navegacao">
+                <ul style="display: flex; gap: 20px; align-items: center; list-style: none;">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a href="index.html#orcamento" class="btn-header-destaque">Fazer Orçamento</a></li>
+                </ul>
+            </nav>
+            <a href="index.html#orcamento" class="btn-mobile-orcamento">Orçamento Rápido</a>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="cat-topo">
+            <h1>Catálogo de Produtos</h1>
+            <p style="color:#999">Veja o que temos, monte seu pedido e receba os valores pelo WhatsApp.</p>
+        </section>
+
+        <div class="cat-ferramentas">
+            <input type="search" id="cat-busca" placeholder="Buscar produto ou marca..." aria-label="Buscar produto">
+            <select id="cat-marca" aria-label="Filtrar por marca"></select>
+        </div>
+        <div class="cat-abas" id="cat-abas"></div>
+
+        <!-- Atalho: aparece só na aba "Todos" -->
+        <div class="cat-cta-box" id="cat-cta">
+            <button class="cat-cta" type="button" data-cat="baterias">🔋 Procurando bateria de carro ou caminhão? <strong>Descubra qual serve no seu veículo →</strong></button>
+            <button class="cat-cta" type="button" data-cat="baterias_moto">🏍️ Procurando bateria de moto? <strong>Descubra qual serve na sua moto →</strong></button>
+        </div>
+
+        <!-- Bloco de baterias: aparece só na aba "Baterias", acima dos itens -->
+        <div id="bloco-bateria" hidden>
+            <p class="cat-aviso-estoque">📦 <strong>Prazo:</strong> trabalhamos com estoque das baterias, mas se algum modelo estiver em falta na semana, fazemos a encomenda e ele chega em <strong>1 a 2 semanas</strong>.</p>
+            <section class="f-box">
+                <h2 id="f-titulo">🔋 Qual bateria serve no seu veículo?</h2>
+                <input type="search" id="f-busca" class="f-input" autocomplete="off" placeholder="Digite o veículo. Ex.: Gol 2015, Onix, CG 160, Hilux" aria-label="Digite o seu veículo">
+                <div id="f-sugestoes"></div>
+                <div id="f-resultado"></div>
+            </section>
+        </div>
+        <p class="cat-contagem" id="cat-contagem"></p>
+        <div class="cat-grid" id="cat-grid"></div>
+    </main>
+
+    <!-- CARRINHO -->
+    <button class="cart-fab" id="cart-fab">🛒 Meu pedido <span id="cart-total">0</span></button>
+    <div class="cart-fundo" id="cart-fundo"></div>
+    <aside class="cart-painel" aria-label="Meu pedido">
+        <div class="cart-cab"><h2>Meu pedido</h2><button class="cart-fechar" id="cart-fechar" aria-label="Fechar">×</button></div>
+        <div class="cart-lista" id="cart-lista"></div>
+        <div class="cart-rodape">
+            <input type="text" id="cart-nome" placeholder="Seu nome (opcional)">
+            <input type="text" id="cart-veiculo" placeholder="Veículo/modelo/ano (opcional)">
+            <button class="cart-enviar" id="cart-enviar">Enviar para o WhatsApp</button>
+            <button class="cart-limpar" id="cart-limpar">Limpar pedido</button>
+            <p class="cart-aviso">Os valores serão informados pela nossa equipe no WhatsApp. Baterias em falta na semana são encomendadas, com prazo de 1 a 2 semanas.</p>
+        </div>
+    </aside>
+
+    <footer>
+        <div class="container text-center">
+            <p>&copy; 2026 OPS COMERCIO DE LUBRIFICANTES LTDA. Todos os direitos reservados.</p>
+            <p>CNPJ: 07.306.593/0001-68 | Av. América, 3100 - Cianorte, PR</p>
+        </div>
+    </footer>
+
+    <script src="data/produtos.js"></script>
+    <script src="data/baterias.js"></script>
+    <script src="data/fotos.js"></script>
+    <script src="js/catalogo.js"></script>
+</body>
+</html>
