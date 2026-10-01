@@ -71,9 +71,6 @@
 .f-econ{border-left:3px solid #444;background:#0d0d0d;padding:9px 12px}
 .f-econ .f-tag{color:#9a9a9a;font-weight:600}
 .f-econ strong{font-weight:600;font-size:.95rem}
-.cat-add.sec{background:transparent;color:#ddd;border:1px solid #555}
-.cat-add.sec:hover{background:#1c1c1c}
-.cat-item:has(.cat-add.sec){opacity:.95}
 .cat-item.moura{border-color:var(--borda-moura)}
 .cat-item.zetta{border-color:var(--borda-zetta)}
 .f-bat.moura{border-color:var(--borda-moura)}

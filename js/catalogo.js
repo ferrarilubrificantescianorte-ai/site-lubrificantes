@@ -75,7 +75,7 @@
       return `<div class="f-bat moura"><div><strong>${esc(b.nome)}</strong><br><small>${esc(b.detalhe)}</small>${anos}</div>
         <button class="cat-add" data-nome="${esc(b.nome)}" data-veic="${esc(veic)}">+ Adicionar ao pedido</button></div>` +
         (z ? `<div class="f-bat f-econ"><div><span class="f-tag">Opção mais em conta</span><br><strong>${esc(z.nome)}</strong><br><small>${esc(z.detalhe.split(" • ").slice(0, 3).join(" • "))}</small></div>
-        <button class="cat-add sec" data-nome="${esc(z.nome)}" data-veic="${esc(veic)}">+ Adicionar ao pedido</button></div>` : "");
+        <button class="cat-add" data-nome="${esc(z.nome)}" data-veic="${esc(veic)}">+ Adicionar ao pedido</button></div>` : "");
     }).join("") + '<p class="cart-aviso">Mais de uma opção pode servir (ex.: convencional ou AGM). Nossa equipe confirma a ideal no WhatsApp. ' + AVISO_ESTOQUE + '</p>';
   }
 
@@ -108,7 +108,8 @@
     const itens = TODOS.filter((p) =>
       (categoriaAtiva === "todas" || p.categoria === categoriaAtiva) && (!marca || p.marca === marca) &&
       (!q || semAcento([p.nome, p.marca, p.detalhe, p.aplicacao, p.zetta].join(" ")).includes(q)));
-    if (q) itens.sort((a, b) => (a.marca === "Zetta") - (b.marca === "Zetta")); // com busca ativa, Moura aparece antes da Zetta
+    const ordemCat = {}; itens.forEach((p) => { if (!(p.categoria in ordemCat)) ordemCat[p.categoria] = Object.keys(ordemCat).length; });
+    itens.sort((a, b) => ordemCat[a.categoria] - ordemCat[b.categoria] || (a.marca === "Zetta") - (b.marca === "Zetta")); // em cada categoria, Zetta depois da Moura
     $("cat-contagem").textContent = itens.length + (itens.length === 1 ? " produto" : " produtos");
     $("cat-grid").innerHTML = itens.length ? itens.map((p) => `
       <article class="cat-item${p.marca === "Moura" ? " moura" : p.marca === "Zetta" ? " zetta" : ""}">
@@ -120,7 +121,7 @@
           ${p.zetta ? `<p class="cat-detalhe">Opção mais em conta: Zetta ${esc(p.zetta)}</p>` : ""}
           ${p.medidas ? `<p class="cat-detalhe">Medidas: ${esc(p.medidas)}</p>` : ""}
           ${p.aplicacao ? `<p class="cat-aplic" title="Clique para ver tudo"><b>Serve em:</b> ${esc(p.aplicacao)}</p>` : ""}
-          <button class="cat-add${p.marca === "Zetta" ? " sec" : ""}" data-nome="${esc(p.nome)}">+ Adicionar ao pedido</button>
+          <button class="cat-add" data-nome="${esc(p.nome)}">+ Adicionar ao pedido</button>
         </div>
       </article>`).join("") : '<p class="cat-vazio">Nenhum produto encontrado. Não achou o que procura? Fale com a gente pelo WhatsApp — temos mais de 6000 itens!</p>';
   }
