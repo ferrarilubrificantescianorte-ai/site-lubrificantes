@@ -17,7 +17,7 @@ const FOTOS = {
   "linha:AGM":    "assets/produtos/linha_AGM.png",
   "linha:EFB":    "assets/produtos/linha-EFB.webp",
   "linha:leve":   "assets/produtos/linha_leve.png",
-  "linha:pesada": "assets/produtos/linha_pesada.png",
+  "linha:pesada": "linha_pesada.png",
   "Zetta:leve": "assets/produtos/zetta-leve.png",
   "linha:moto": "assets/produtos/linha-moto.png"
   //
