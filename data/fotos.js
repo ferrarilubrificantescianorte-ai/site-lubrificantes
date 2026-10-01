@@ -14,9 +14,9 @@
 // Produtos sem foto usam a imagem da categoria.
 // Dica de imagem: .webp ou .jpg, cerca de 800x800 px, até ~100 KB, nome em minúsculas e sem espaços/acentos.
 const FOTOS = {
-  "linha:AGM":    "assets/produtos/linha_AGM.png",
-  "linha:EFB":    "assets/produtos/linha-EFB.webp",
-  "linha:leve":   "assets/produtos/linha_leve.png",
+  "linha:AGM": "assets/produtos/linha_AGM.png",
+  "linha:EFB": "assets/produtos/linha-EFB.webp",
+  "linha:leve": "assets/produtos/linha_leve.png",
   "linha:pesada": "linha_pesada.png",
   "Zetta:leve": "assets/produtos/zetta-leve.png",
   "linha:moto": "assets/produtos/linha-moto.png"
