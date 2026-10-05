@@ -839,3 +839,160 @@ footer {
 .text-center {
     text-align: center;
 }
+/* =========================================
+   13. AJUSTES PARA CELULAR
+   ========================================= */
+@media (max-width: 600px) {
+    :root {
+        --altura-cabecalho: 62px;
+    }
+    .container {
+        width: 88%;
+    }
+    .logo {
+        height: 38px;
+    }
+    .btn-mobile-orcamento {
+        padding: 10px 14px;
+    }
+    .secao-site,
+    #orcamento {
+        padding: 50px 0;
+    }
+    p {
+        font-size: 1rem;
+    }
+    h1 {
+        font-size: 1.85rem;
+    }
+
+    /* Hero: menos espaço vazio em cima e embaixo */
+    .hero-section {
+        padding-top: 36px;
+        padding-bottom: 40px;
+    }
+    .diferenciais-grid {
+        margin-top: 10px;
+        gap: 10px;
+    }
+    .diferencial-card {
+        padding: 12px 14px;
+    }
+
+    /* Títulos que têm tamanho fixo direto no HTML */
+    #vitrine-produtos h2 {
+        font-size: 1.6rem !important;
+    }
+    #vitrine-produtos .cabecalho-secao {
+        margin-bottom: 24px !important;
+    }
+    #sobre h2 {
+        font-size: 1.6rem !important;
+        margin-bottom: 14px !important;
+    }
+
+    /* Vitrine: 2 cards por linha, mais compactos */
+    .grid-vitrine {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+    }
+    .card-produto {
+        padding: 10px;
+    }
+    .imagem-produto {
+        height: 100px !important;
+        margin-bottom: 10px;
+    }
+    .card-produto h3 {
+        font-size: 1.05rem;
+        margin-bottom: 6px;
+    }
+    .card-produto p {
+        font-size: 0.82rem;
+        margin-bottom: 10px;
+    }
+    .marcas-destaque {
+        font-size: 0.65rem;
+        letter-spacing: 0.3px;
+        padding: 5px 6px;
+    }
+
+    /* Sobre */
+    .card-depoimento {
+        padding: 28px 20px;
+    }
+    .texto-depoimento {
+        font-size: 1rem;
+    }
+    .grid-prova-social {
+        gap: 20px;
+    }
+    .fotos-menores {
+        gap: 10px;
+    }
+
+    /* Orçamento */
+    .cta-box {
+        padding: 30px 16px;
+    }
+    .cta-box h2 {
+        font-size: 1.45rem;
+    }
+    .cta-box p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+    .form-grupo {
+        margin-bottom: 16px;
+        gap: 16px;
+    }
+    .btn-whatsapp-grande {
+        font-size: 1.05rem;
+        padding: 15px 16px;
+    }
+
+    /* Marcas */
+    .grid-marcas {
+        gap: 24px 30px;
+        margin-top: 20px;
+    }
+    .marca-item {
+        max-width: 110px;
+    }
+    #marcas p {
+        margin-bottom: 20px !important;
+    }
+    .catalogo-marcas {
+        margin-top: 30px !important;
+        padding-top: 20px;
+    }
+    .catalogo-marcas h3 {
+        font-size: 1.2rem;
+    }
+    .slider-marcas {
+        margin-top: 10px;
+    }
+    .slide-logo {
+        width: 90px;
+        margin: 0 20px;
+    }
+
+    /* Mapa */
+    #localizacao iframe {
+        height: 280px;
+    }
+    #localizacao .btn-orcamento-topo {
+        display: block !important;
+        font-size: 1rem !important;
+        padding: 14px 16px !important;
+    }
+
+    /* Rodapé: espaço para o botão do WhatsApp não cobrir o texto */
+    footer {
+        padding: 36px 0 80px;
+    }
+    footer p {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+    }
+}

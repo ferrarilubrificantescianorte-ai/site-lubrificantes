@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Página de conversão do Google Ads: não deve aparecer no Google -->
+    <meta name="robots" content="noindex, nofollow">
+    <title>Orçamento enviado | Ferrari Lubrificantes</title>
+    <link rel="icon" type="image/png" href="assets/icons/Logo-SF.PNG">
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- COLE AQUI a tag do Google (gtag.js) que o Google Ads fornece -->
+
+    <style>
+        .obrigado { min-height: 70vh; display: flex; align-items: center; padding: 50px 0; }
+        .obrigado .cta-box h1 { font-size: 1.8rem; }
+    </style>
+</head>
+<body>
+    <header id="cabecalho">
+        <div class="container-header">
+            <a href="index.html"><img src="assets/icons/logo-empresa.jpg" alt="Logo da Empresa" class="logo"></a>
+        </div>
+    </header>
+
+    <main class="obrigado">
+        <div class="container">
+            <div class="cta-box">
+                <h1>✅ Abrindo o WhatsApp...</h1>
+                <p>Seu pedido de orçamento já está pronto. Se o WhatsApp não abrir sozinho em alguns segundos, toque no botão abaixo.</p>
+                <a id="btn-zap" class="btn-whatsapp-grande" href="https://wa.me/554436373709" style="text-decoration: none;">
+                    <img src="assets/icons/icone-whatsapp.png" alt=""> Abrir o WhatsApp
+                </a>
+                <a href="index.html" class="cta-microcopy" style="color: #999;">Voltar para o site</a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // A mensagem montada no formulário (js/main.js) vem guardada no sessionStorage.
+        var url = null;
+        try { url = sessionStorage.getItem("orcamento_whatsapp"); } catch (e) {}
+        if (url) {
+            document.getElementById("btn-zap").href = url;
+            // espera um pouco para a tag do Google registrar a conversão antes de sair da página
+            setTimeout(function () { location.href = url; }, 1500);
+        }
+    </script>
+</body>
+</html>

@@ -121,7 +121,7 @@
           ${p.zetta ? `<p class="cat-detalhe">Opção mais em conta: Zetta ${esc(p.zetta)}</p>` : ""}
           ${p.medidas ? `<p class="cat-detalhe">Medidas: ${esc(p.medidas)}</p>` : ""}
           ${p.aplicacao ? `<p class="cat-aplic" title="Clique para ver tudo"><b>Serve em:</b> ${esc(p.aplicacao)}</p>` : ""}
-          <button class="cat-add" data-nome="${esc(p.nome)}">+ Adicionar ao pedido</button>
+          <button class="cat-add" data-nome="${esc(p.nome)}">+ Adicionar<span class="cat-add-txt"> ao pedido</span></button>
         </div>
       </article>`).join("") : '<p class="cat-vazio">Nenhum produto encontrado. Não achou o que procura? Fale com a gente pelo WhatsApp — temos mais de 6000 itens!</p>';
   }
@@ -131,8 +131,8 @@
     const b = e.target.closest(".cat-add"); if (!b) return;
     carrinho[b.dataset.nome] = (carrinho[b.dataset.nome] || 0) + 1;
     if (b.dataset.veic && !$("cart-veiculo").value) $("cart-veiculo").value = b.dataset.veic;
-    salvar(); carrinhoUI(); const t = b.textContent; b.textContent = "✓ Adicionado";
-    setTimeout(() => (b.textContent = t), 900);
+    salvar(); carrinhoUI(); b._t = b._t || b.innerHTML; b.textContent = "✓ Adicionado";
+    clearTimeout(b._timer); b._timer = setTimeout(() => (b.innerHTML = b._t), 900);
   }
   $("cat-grid").addEventListener("click", adicionar);
   fRes.addEventListener("click", adicionar);

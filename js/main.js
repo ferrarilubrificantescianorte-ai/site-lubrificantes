@@ -78,8 +78,8 @@ document.addEventListener("DOMContentLoaded", function() {
             const servico = selectServico.value;
             const identificacao = document.getElementById("veiculo-identificacao").value;
             
-            // ATENÇÃO: Coloque o número do WhatsApp
-            const numeroTelefone = "5544999998979"; 
+            // Troca de óleo e demais serviços: (44) 3637-3709 | Estética / Pneus / Outros: (44) 9999-8979
+            const numeroTelefone = servico === "Outros" ? "5544999998979" : "554436373709";
             let mensagem = `Olá! Vim pelo site e gostaria de um orçamento.\n\n*Serviço Solicitado:* ${servico}`;
 
             // Se for um serviço que exige dados do carro, monta o resto da ficha
@@ -98,7 +98,9 @@ document.addEventListener("DOMContentLoaded", function() {
             }
             
             const url = `https://wa.me/${numeroTelefone}?text=${encodeURIComponent(mensagem)}`;
-            window.open(url, '_blank');
+            // Passa pela página de agradecimento (URL de conversão do Google Ads), que abre o WhatsApp
+            try { sessionStorage.setItem("orcamento_whatsapp", url); } catch (err) {}
+            window.location.href = "obrigado-orcamento.html";
         });
     }
 
