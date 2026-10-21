@@ -15,6 +15,16 @@
   };
   const fotoDe = (p) => { const l = linhaDe(p);
     return FOTOS_[p.nome] || FOTOS_[p.nome.split(" ").pop()] || p.foto || (l && (FOTOS_[p.marca + ":" + l] || FOTOS_["linha:" + l])) || FOTOS_["marca:" + p.marca] || ""; };
+  // Marcas que têm logo em assets/img/logo-<marca>.webp: usadas quando o produto ainda não tem foto própria
+  const LOGOS = new Set(["acdelco", "aeroflex", "lubrax", "mobil", "motorcraft", "motul", "moura", "shell", "uni", "vonixx", "wega", "yamalube"]);
+  const slugMarca = (m) => String(m).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  const midia = (p) => {
+    const f = fotoDe(p);
+    if (f) return `<img src="${esc(f)}" alt="${esc(p.nome)}" loading="lazy" class="foto-produto">`;
+    const s = slugMarca(p.marca);
+    if (LOGOS.has(s)) return `<div class="cat-logo"><img src="assets/img/logo-${s}.webp" alt="${esc(p.marca)}" loading="lazy"></div>`;
+    return `<img src="${esc(CATEGORIAS[p.categoria].imagem)}" alt="${esc(p.nome)}" loading="lazy">`;
+  };
   const porNome = {}; TODOS.forEach((p) => (porNome[p.nome] = p));
   let carrinho = {}; // { nomeDoProduto: quantidade }
   try { carrinho = JSON.parse(localStorage.getItem(CHAVE)) || {}; } catch (e) {}
@@ -22,6 +32,15 @@
   if (categoriaAtiva !== "todas" && !CATEGORIAS[categoriaAtiva]) categoriaAtiva = "todas";
 
   const $ = (id) => document.getElementById(id);
+  // Todo pedido passa por obrigado-orcamento.html (conversão do Google Ads), que abre o WhatsApp.
+  // O parâmetro ?origem=produtos só identifica que veio do catálogo; o nome da página não muda.
+  const enviarWhats = (msg) => {
+    const url = `https://wa.me/${WHATS}?text=${encodeURIComponent(msg)}`;
+    let guardou = false;
+    try { sessionStorage.setItem("orcamento_whatsapp", url); guardou = true; } catch (e) {}
+    if (guardou) location.href = "obrigado-orcamento.html?origem=produtos";
+    else window.open(url, "_blank"); // sem sessionStorage a página de obrigado usaria o número da troca de óleo
+  };
   const salvar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(carrinho)); } catch (e) {} };
   const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const semAcento = (t) => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -30,7 +49,14 @@
 
   // ---------- BUSCADOR POR VEÍCULO (cliente digita) ----------
   const ALIAS = { vw: "volkswagen", gm: "chevrolet", chevy: "chevrolet", merc: "mercedes", mb: "mercedes", benz: "mercedes" };
-  const ICONE = { C: "🚗", M: "🏍️", T: "🚛" };
+  const SVG = (p) => `<svg class="icone" viewBox="0 0 24 24" aria-hidden="true">${p}</svg>`;
+  const ICONE = {
+    C: SVG('<path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/><circle cx="7" cy="17" r="2"/><path d="M9 17h6"/><circle cx="17" cy="17" r="2"/>'),
+    M: SVG('<circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/>'),
+    T: SVG('<path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/>')
+  };
+  const ICONE_BAT = SVG('<rect x="2" y="7" width="16" height="10" rx="2"/><path d="M22 11v2"/><path d="m10.5 9.5-2 3h3l-2 3"/>');
+  const ICONE_MOTO = ICONE.M;
   const ALT_MOTO = { fan: "cg", titan: "cg", start: "cg" }; // Fan, Titan e Start usam a mesma bateria da linha CG
   const ehMotoAba = () => categoriaAtiva === "baterias_moto";
   const LINHAS = APLICACOES.map((a) => ({ t: a[0], marca: a[1], modelo: a[2], de: a[3], ate: a[4], bat: a[5], txt: semAcento(a[1] + " " + a[2]) }));
@@ -73,9 +99,9 @@
       const b = BATERIAS[i], z = b.zetta && porNome["Bateria Zetta " + b.zetta];
       const anos = ano ? "" : `<br><small>Anos: ${esc(porBat.get(i).join(", "))}</small>`;
       return `<div class="f-bat moura"><div><strong>${esc(b.nome)}</strong><br><small>${esc(b.detalhe)}</small>${anos}</div>
-        <button class="cat-add" data-nome="${esc(b.nome)}" data-veic="${esc(veic)}">+ Adicionar ao pedido</button></div>` +
+        <div class="cat-acoes"><button class="cat-add" data-nome="${esc(b.nome)}" data-veic="${esc(veic)}">+ Adicionar ao pedido</button><button class="cat-ask" data-nome="${esc(b.nome)}" data-veic="${esc(veic)}">Consultar valor</button></div></div>` +
         (z ? `<div class="f-bat f-econ"><div><span class="f-tag">Opção mais em conta</span><br><strong>${esc(z.nome)}</strong><br><small>${esc(z.detalhe.split(" • ").slice(0, 3).join(" • "))}</small></div>
-        <button class="cat-add" data-nome="${esc(z.nome)}" data-veic="${esc(veic)}">+ Adicionar ao pedido</button></div>` : "");
+        <div class="cat-acoes"><button class="cat-add" data-nome="${esc(z.nome)}" data-veic="${esc(veic)}">+ Adicionar ao pedido</button><button class="cat-ask" data-nome="${esc(z.nome)}" data-veic="${esc(veic)}">Consultar valor</button></div></div>` : "");
     }).join("") + '<p class="cart-aviso">Mais de uma opção pode servir (ex.: convencional ou AGM). Nossa equipe confirma a ideal no WhatsApp. ' + AVISO_ESTOQUE + '</p>';
   }
 
@@ -86,20 +112,20 @@
   // ---------- LISTA DE PRODUTOS ----------
   const abas = $("cat-abas");
   abas.innerHTML = [["todas", "Todos"], ...Object.entries(CATEGORIAS).map(([k, v]) => [k, v.nome])]
-    .map(([k, n]) => `<button class="cat-aba" data-cat="${k}">${n}</button>`).join("");
-  $("cat-marca").innerHTML = opts("Todas as marcas", unicos(TODOS.map((p) => p.marca)));
+    .map(([k, n]) => `<button class="cat-aba" role="tab" data-cat="${k}">${n}</button>`).join("");
+  $("cat-marca").innerHTML = opts("Marcas", unicos(TODOS.map((p) => p.marca)));
   abas.addEventListener("click", (e) => { const b = e.target.closest(".cat-aba"); if (b) { categoriaAtiva = b.dataset.cat; desenhar(); } });
   $("cat-busca").addEventListener("input", desenhar);
   $("cat-cta").addEventListener("click", (e) => { const b = e.target.closest("[data-cat]"); if (!b) return; categoriaAtiva = b.dataset.cat; desenhar(); fBusca.focus(); $("bloco-bateria").scrollIntoView({ behavior: "smooth", block: "start" }); });
   $("cat-marca").addEventListener("change", desenhar);
 
   function desenhar() {
-    document.querySelectorAll(".cat-aba").forEach((b) => b.classList.toggle("ativa", b.dataset.cat === categoriaAtiva));
+    document.querySelectorAll(".cat-aba").forEach((b) => { const on = b.dataset.cat === categoriaAtiva; b.classList.toggle("ativa", on); b.setAttribute("aria-selected", on); });
     const abaBat = categoriaAtiva === "baterias" || categoriaAtiva === "baterias_moto";
     $("bloco-bateria").hidden = !abaBat;
     if (abaBat && ultimaAba !== categoriaAtiva) {
       fBusca.value = ""; fSug.innerHTML = ""; fRes.innerHTML = "";
-      $("f-titulo").textContent = ehMotoAba() ? "🏍️ Qual bateria serve na sua moto?" : "🔋 Qual bateria serve no seu veículo?";
+      $("f-titulo").innerHTML = (ehMotoAba() ? ICONE_MOTO + " Qual bateria serve na sua moto?" : ICONE_BAT + " Qual bateria serve no seu veículo?");
       fBusca.placeholder = ehMotoAba() ? "Digite a moto. Ex.: CG 160, Ninja 400, XRE 300" : "Digite o veículo. Ex.: Palio 2012, Onix, Hilux";
     }
     ultimaAba = categoriaAtiva;
@@ -113,7 +139,7 @@
     $("cat-contagem").textContent = itens.length + (itens.length === 1 ? " produto" : " produtos");
     $("cat-grid").innerHTML = itens.length ? itens.map((p) => `
       <article class="cat-item${p.marca === "Moura" ? " moura" : p.marca === "Zetta" ? " zetta" : ""}">
-        <img src="${esc(fotoDe(p) || CATEGORIAS[p.categoria].imagem)}" alt="${esc(p.nome)}" loading="lazy"${fotoDe(p) ? ' class="foto-produto"' : ""}>
+        ${midia(p)}
         <div class="cat-item-corpo">
           <span class="cat-marca">${esc(p.marca)}</span>
           <h3>${esc(p.nome)}</h3>
@@ -121,13 +147,22 @@
           ${p.zetta ? `<p class="cat-detalhe">Opção mais em conta: Zetta ${esc(p.zetta)}</p>` : ""}
           ${p.medidas ? `<p class="cat-detalhe">Medidas: ${esc(p.medidas)}</p>` : ""}
           ${p.aplicacao ? `<p class="cat-aplic" title="Clique para ver tudo"><b>Serve em:</b> ${esc(p.aplicacao)}</p>` : ""}
-          <button class="cat-add" data-nome="${esc(p.nome)}">+ Adicionar<span class="cat-add-txt"> ao pedido</span></button>
+          <div class="cat-acoes">
+            <button class="cat-add" data-nome="${esc(p.nome)}">+ Adicionar<span class="cat-add-txt"> ao pedido</span></button>
+            <button class="cat-ask" data-nome="${esc(p.nome)}">Consultar valor</button>
+          </div>
         </div>
       </article>`).join("") : '<p class="cat-vazio">Nenhum produto encontrado. Não achou o que procura? Fale com a gente pelo WhatsApp — temos mais de 6000 itens!</p>';
   }
 
   function adicionar(e) {
     const ap = e.target.closest(".cat-aplic"); if (ap) { ap.classList.toggle("aberto"); return; }
+    const q = e.target.closest(".cat-ask");
+    if (q) {
+      let m = "Olá! Vim pelo catálogo do site e gostaria de saber o valor e a disponibilidade deste item:\n\n• " + q.dataset.nome;
+      if (q.dataset.veic) m += "\n*Veículo:* " + q.dataset.veic;
+      enviarWhats(m); return;
+    }
     const b = e.target.closest(".cat-add"); if (!b) return;
     carrinho[b.dataset.nome] = (carrinho[b.dataset.nome] || 0) + 1;
     if (b.dataset.veic && !$("cart-veiculo").value) $("cart-veiculo").value = b.dataset.veic;
@@ -169,7 +204,7 @@
     msg += ids.map((n) => `• ${carrinho[n]}x ${n}`).join("\n");
     if (nome) msg += `\n\n*Nome:* ${nome}`;
     if (veiculo) msg += `\n*Veículo:* ${veiculo}`;
-    window.open(`https://wa.me/${WHATS}?text=${encodeURIComponent(msg)}`, "_blank");
+    enviarWhats(msg);
   });
 
   desenhar(); carrinhoUI();
