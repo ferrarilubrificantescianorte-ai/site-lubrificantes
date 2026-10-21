@@ -113,3 +113,5 @@ O texto sobre encomenda (1 a 2 semanas) fica na constante `AVISO_ESTOQUE` em `js
 
 Os serviços são as `<option>` do campo `tipo-servico` em `index.html`. Se você renomear "Radiador", "Outros" ou "Troca de Câmbio", atualize as comparações em `js/main.js`.
 - Escolhendo **Motor → Outro**, aparece um campo de texto para digitar o motor.
+
+- 
