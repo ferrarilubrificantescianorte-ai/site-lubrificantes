@@ -1,9 +1,11 @@
 # Site Ferrari Lubrificantes
 
-Site estático (HTML + CSS + JavaScript puro, sem build e sem dependências) da Ferrari Lubrificantes, em Cianorte. Tem duas páginas:
+Site estático (HTML + CSS + JavaScript puro, sem build e sem dependências) da Ferrari Lubrificantes, em Cianorte. Tem quatro páginas:
 
-- **`index.html`**: página institucional com os diferenciais, a vitrine de categorias, informações sobre a oficina, o formulário de orçamento, as marcas e a localização.
-- **`catalogo.html`**: catálogo de produtos com filtros, um buscador "qual bateria serve no meu veículo" e um carrinho que monta o pedido e envia pelo WhatsApp.
+- **`index.html`**: página inicial. Apresenta a empresa e leva o cliente para um dos dois caminhos: troca de óleo ou produtos.
+- **`troca-de-oleo.html`**: página da troca de óleo, com o formulário de orçamento em 3 passos, como funciona, marcas de óleo e perguntas frequentes.
+- **`catalogo.html`**: aba de produtos, com filtros, um buscador "qual bateria serve no meu veículo" e um carrinho que monta o pedido e envia pelo WhatsApp.
+- **`obrigado-orcamento.html`**: página de conversão do Google Ads. **Não renomeie nem mova.** Todo orçamento de troca de óleo passa por ela antes de abrir o WhatsApp.
 
 O site não tem backend. Os pedidos e orçamentos viram uma mensagem pronta que é aberta em `https://wa.me/<número>`.
 
@@ -21,18 +23,23 @@ Para publicar, envie a pasta inteira para qualquer hospedagem estática (GitHub 
 ## Estrutura
 
 ```
-index.html          Página principal
-catalogo.html       Página do catálogo
+index.html          Página inicial
+troca-de-oleo.html  Troca de óleo + formulário de orçamento
+catalogo.html       Produtos (catálogo)
+obrigado-orcamento.html  Conversão do Google Ads (não renomear)
 css/style.css       Estilos globais (as duas páginas usam)
 css/catalogo.css    Estilos exclusivos do catálogo
-js/main.js          Formulário de orçamento dinâmico + rolagem suave (index)
+js/site.js          Menu do celular (todas as páginas)
+js/main.js          Formulário de orçamento em passos (troca-de-oleo)
 js/catalogo.js      Catálogo: filtros, buscador de bateria, carrinho, envio ao WhatsApp
 data/produtos.js    Categorias e produtos (exceto baterias)   ← editar aqui
 data/baterias.js    Baterias Moura/Zetta e aplicações (gerado, não editar à mão)
 data/fotos.js       Mapa de fotos dos produtos                ← editar aqui
 assets/icons/       Logo, favicon, ícone do WhatsApp
-assets/img/         Fotos da loja, vitrines e logos das marcas
-assets/produtos/    Fotos dos produtos usadas no catálogo
+assets/img/         Fotos da loja, vitrines e logos das marcas (arquivos *-opt.webp são as versões leves usadas no site)
+assets/produtos/    Fotos dos produtos usadas no catálogo (.webp)
+robots.txt          Orientação para o Google
+sitemap.xml         Lista de páginas para o Google
 ```
 
 Os scripts do catálogo precisam ser carregados nesta ordem em `catalogo.html`: `produtos.js` → `baterias.js` → `fotos.js` → `catalogo.js`.
@@ -88,11 +95,12 @@ Ordem de prioridade da chave (da mais específica para a mais geral):
 
 ### Trocar o número do WhatsApp
 
-O número (formato internacional, só dígitos, ex.: `5544999998979`) aparece em três lugares:
+São dois números, no formato internacional (só dígitos):
 
-- `js/catalogo.js`: constante `WHATS`
-- `js/main.js`: constante `numeroTelefone`
-- `index.html`: link do botão flutuante (`whatsapp-flutuante`)
+- **Troca de óleo:** `554436373709`, em `js/main.js` (constante `NUMERO_WHATSAPP`), no botão flutuante e nos botões "WhatsApp" de `index.html` e `troca-de-oleo.html`, e como link de reserva em `obrigado-orcamento.html`.
+- **Produtos:** `5544999998979`, em `js/catalogo.js` (constante `WHATS`) e no botão "WhatsApp: produtos" de `index.html`.
+
+Os telefones exibidos (topo e rodapé) estão em cada HTML.
 
 ### Aviso de estoque
 
@@ -100,18 +108,37 @@ O texto sobre encomenda (1 a 2 semanas) fica na constante `AVISO_ESTOQUE` em `js
 
 ## Como o catálogo funciona
 
-- **Abas e filtros:** as abas saem de `CATEGORIAS`. A busca ignora acentos e procura em nome, marca, detalhe e aplicação. Dá para abrir direto numa categoria com `catalogo.html?cat=baterias`.
+- **Abas e filtros:** as abas saem de `CATEGORIAS`. A busca ignora acentos e procura em nome, marca, detalhe e aplicação. Dá para abrir direto numa categoria com `catalogo.html?cat=baterias`. A barra de busca, marca e abas fica fixa ao rolar a página.
+- **Imagem do produto:** usa a foto do produto (`data/fotos.js`) quando existe. Sem foto, mostra o logo da marca, se houver `assets/img/logo-<marca>.webp` (a lista está em `LOGOS`, em `js/catalogo.js`); sem logo, usa a imagem da categoria.
+- **Preços:** o site não mostra preços. Cada produto tem **"+ Adicionar ao pedido"** e **"Consultar valor"** (pergunta só aquele item no WhatsApp).
 - **Buscador de bateria:** aparece nas abas Baterias e Baterias de Moto. Entende abreviações (`vw`, `gm`, `mb`…) e um ano no meio do texto (ex.: `Palio 2012`). Fan, Titan e Start são tratadas como linha CG. Para cada veículo mostra a Moura e, quando existir, a opção Zetta mais em conta.
-- **Carrinho:** fica salvo no `localStorage` (chave `ferrari_carrinho_v2`). Ao enviar, abre o WhatsApp com a lista de itens e, se preenchidos, o nome e o veículo do cliente. Se o formato do carrinho mudar, troque essa chave para não carregar dados antigos.
+- **Carrinho:** fica salvo no `localStorage` (chave `ferrari_carrinho_v2`). Se o formato do carrinho mudar, troque essa chave para não carregar dados antigos.
+- **Envio e rastreamento (Google Ads):** "Enviar para o WhatsApp" e "Consultar valor" guardam a mensagem em `sessionStorage` e abrem `obrigado-orcamento.html?origem=produtos`, que dispara a conversão e abre o WhatsApp de produtos. O `?origem=produtos` serve só para identificar a origem; o nome da página não pode mudar.
 
-## Formulário de orçamento (index)
+## Formulário de orçamento (troca-de-oleo)
 
-`js/main.js` mostra ou esconde campos conforme o serviço escolhido:
+`js/main.js` controla o formulário em passos (Serviço → Veículo → Envio):
 
-- **Troca Simples / Troca Completa / Troca de Câmbio:** pede os dados do veículo (modelo, ano, motor, combustível). Troca de Câmbio também pede o tipo de transmissão.
-- **Radiador / Outros:** mostra só um campo de mensagem livre.
-
-Os serviços são as `<option>` do campo `tipo-servico` em `index.html`. Se você renomear "Radiador", "Outros" ou "Troca de Câmbio", atualize as comparações em `js/main.js`.
+- **Troca Simples / Troca Completa / Troca de Câmbio:** passam pelos 3 passos e pedem os dados do veículo (modelo, ano, motor, combustível). Troca de Câmbio também pede o tipo de transmissão.
+- **Radiador / Outro:** pulam o passo do veículo e pedem só nome e uma observação (obrigatória em "Outro").
 - Escolhendo **Motor → Outro**, aparece um campo de texto para digitar o motor.
+- Links como `troca-de-oleo.html?servico=completa#orcamento` já abrem com o serviço escolhido (`simples`, `completa`, `cambio`, `radiador`, `outro`).
+- Ao enviar, a mensagem é guardada em `sessionStorage` e o navegador vai para `obrigado-orcamento.html`, que abre o WhatsApp.
 
-- 
+Os serviços são os botões `name="servico"` em `troca-de-oleo.html`. Se renomear algum valor, atualize `PRECISA_VEICULO` e `ATALHOS` em `js/main.js`.
+
+## SEO e desempenho
+
+- Cada página tem título e descrição próprios, link canônico e pré-visualização para compartilhar (Open Graph). Os endereços usam `https://ferrarilubrificantes.com.br/`. Se o domínio mudar, troque nas tags `canonical`, `og:url`, `og:image`, nos blocos `application/ld+json` e no `sitemap.xml`/`robots.txt`.
+- **Dados estruturados (JSON-LD):** `index.html` descreve o negócio local (endereço, horário, telefones, localização); `troca-de-oleo.html` tem o serviço e as perguntas frequentes; `catalogo.html` tem o caminho de navegação. O Instagram (`@f.lubrificantes`) está no rodapé, na seção "Onde estamos" e no `sameAs` do JSON-LD da página inicial. Se mudar endereço, horário, telefone ou redes sociais, atualize também esses blocos (fim do `<head>`).
+- As perguntas frequentes em `troca-de-oleo.html` também alimentam o JSON-LD `FAQPage`: ao editar um texto, edite nos dois lugares.
+- `obrigado-orcamento.html` fica de fora do `sitemap.xml` e tem `noindex` de propósito (página só de conversão).
+- Imagens: todas as fotos do site são `.webp` leves. Ao adicionar fotos novas, use no máximo ~1000 px de largura e ~150 KB, e informe `width` e `height` no `<img>`.
+
+## Arquivos antigos que podem ser apagados
+
+Depois da reforma, estes arquivos não são mais usados pelo site (os `*-opt.webp` e as fotos `.webp` novas os substituíram). Apagar libera cerca de 13 MB:
+
+- `assets/img/`: `imagem-hero.webp`, `fachada-frente.webp`, `interno-loja.webp`, `loja-barracao.webp`, `loja-box-oleo.webp`, `loja-interno.webp`, `servico-elevador.webp`, `vitrine-motul.webp`, `vitrine-moura.webp`, `vitrine-vonixx.webp`, `vitrine-wega.webp`, `logo-empresa.webp`
+- `assets/produtos/`: `Linha_AGM.png`, `linha_leve.png`, `Linha_pesada.png`, `linha-EFB.webp`, `linha-moto.png`, `Zetta-leve.png`, `zetta-pesada.png`
+- A pasta `_backup-antes-da-reforma` guarda a versão anterior do site; apague quando não precisar mais.
