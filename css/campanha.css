@@ -1,0 +1,104 @@
+/* =========================================================
+   CAMPANHA DE FIM DE ANO: faixa, pop-up, seção da home e aviso do catálogo
+   (controlado por js/campanha.js; some sozinho depois da data final)
+   ========================================================= */
+
+/* ---------- FAIXA NO TOPO ---------- */
+.camp-faixa { background: var(--cor-destaque); color: #000; position: relative; z-index: 1001; }
+.camp-faixa-in { width: 92%; max-width: 1160px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 12px; padding: 9px 0; min-height: 42px; }
+.camp-faixa-in > .icone { width: 20px; height: 20px; flex: none; }
+.camp-faixa p { margin: 0; font-size: 0.9rem; line-height: 1.35; color: #000; }
+.camp-faixa .camp-curto { display: none; }
+.camp-faixa-btn { flex: none; background: #000; color: var(--cor-destaque); border: 0; border-radius: 999px; padding: 7px 16px; font: inherit; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: transform 0.2s; }
+.camp-faixa-btn:hover { transform: translateY(-1px); }
+.camp-faixa-x { flex: none; background: transparent; border: 0; color: #000; width: 32px; height: 32px; border-radius: 50%; cursor: pointer; display: grid; place-items: center; opacity: 0.7; }
+.camp-faixa-x:hover { opacity: 1; background: rgba(0, 0, 0, 0.1); }
+.camp-faixa-x .icone { width: 18px; height: 18px; }
+@media (max-width: 700px) {
+    .camp-faixa-in { gap: 8px; justify-content: space-between; padding: 7px 0; }
+    .camp-faixa .camp-longo { display: none; }
+    .camp-faixa .camp-curto { display: inline; }
+    .camp-faixa p { font-size: 0.82rem; flex: 1; }
+    .camp-faixa-btn { padding: 6px 12px; font-size: 0.78rem; }
+}
+
+/* ---------- POP-UP ---------- */
+.camp-modal { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; padding: 18px; opacity: 0; transition: opacity 0.22s; }
+.camp-modal[hidden] { display: none; }
+.camp-modal.visivel { opacity: 1; }
+.camp-fundo { position: absolute; inset: 0; background: rgba(4, 4, 6, 0.78); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+.camp-janela {
+    position: relative; width: min(500px, 100%); max-height: calc(100vh - 36px); overflow: auto;
+    background: radial-gradient(420px 220px at 85% -10%, rgba(255, 215, 0, 0.22), transparent 70%), linear-gradient(180deg, #18181d, #101013);
+    border: 1px solid #4a3f10; border-radius: 24px; box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 215, 0, 0.06);
+    transform: translateY(14px) scale(0.98); transition: transform 0.25s ease;
+}
+.camp-modal.visivel .camp-janela { transform: none; }
+.camp-x { position: absolute; top: 12px; right: 12px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--borda-clara); background: rgba(0, 0, 0, 0.45); color: #fff; cursor: pointer; display: grid; place-items: center; z-index: 2; transition: border-color 0.2s; }
+.camp-x:hover { border-color: var(--cor-destaque); color: var(--cor-destaque); }
+.camp-x .icone { width: 20px; height: 20px; }
+.camp-topo { padding: 34px 32px 6px; }
+.camp-selo { display: inline-flex; align-items: center; gap: 8px; background: rgba(255, 215, 0, 0.12); border: 1px solid rgba(255, 215, 0, 0.35); color: var(--cor-destaque); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px 6px 10px; border-radius: 999px; margin-bottom: 16px; }
+.camp-selo .icone { width: 16px; height: 16px; }
+.camp-topo h2 { font-size: clamp(1.55rem, 4vw, 2rem); margin: 0; padding-right: 36px; }
+.camp-topo h2 em, .camp-card h2 em { font-style: normal; color: var(--cor-destaque); }
+.camp-corpo { padding: 18px 32px 28px; }
+.camp-premios { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 0 18px; }
+.camp-premios li { background: rgba(255, 255, 255, 0.04); border: 1px solid var(--borda); border-radius: 14px; padding: 14px 4px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.camp-premios .ico { width: 46px; height: 46px; border-radius: 50%; background: var(--cor-destaque); color: #000; display: grid; place-items: center; }
+.camp-premios .ico .icone { width: 24px; height: 24px; }
+.camp-premios strong { color: #fff; font-size: 0.82rem; line-height: 1.25; white-space: nowrap; }
+.camp-para { color: #c3c3cc; font-size: 0.95rem; margin-bottom: 20px; }
+.camp-para strong { color: #fff; }
+.camp-acoes { display: grid; gap: 10px; }
+.camp-nota { margin: 16px 0 0; font-size: 0.78rem; color: var(--texto-suave); text-align: center; }
+body.camp-aberto { overflow: hidden; }
+@media (max-width: 480px) {
+    .camp-topo { padding: 28px 20px 4px; }
+    .camp-corpo { padding: 14px 20px 22px; }
+    .camp-premios { gap: 8px; }
+    .camp-premios li { padding: 12px 4px; }
+    .camp-premios .ico { width: 40px; height: 40px; }
+    .camp-premios strong { font-size: 0.74rem; white-space: normal; }
+}
+
+/* ---------- SEÇÃO NA PÁGINA INICIAL ---------- */
+.camp { padding-top: 0; }
+.camp-card {
+    position: relative; overflow: hidden; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 40px; align-items: center;
+    background: radial-gradient(600px 300px at 100% 0%, rgba(255, 215, 0, 0.16), transparent 70%), linear-gradient(135deg, #1a1706 0%, #131317 60%);
+    border: 1px solid #4a3f10; border-radius: 26px; padding: 52px 48px;
+}
+.camp-card h2 { font-size: clamp(1.7rem, 3.4vw, 2.5rem); margin-bottom: 14px; }
+.camp-card .camp-intro { color: #c3c3cc; font-size: 1.05rem; max-width: 520px; }
+.camp-card .camp-premios { margin: 22px 0 26px; max-width: 520px; }
+.camp-card .camp-premios li { background: rgba(0, 0, 0, 0.28); }
+.camp-card .camp-premios strong { font-size: 0.92rem; }
+.camp-card .hero-botoes { margin-bottom: 16px; }
+.camp-card .camp-nota { text-align: left; margin: 0; }
+.camp-lista { background: rgba(0, 0, 0, 0.35); border: 1px solid var(--borda); border-radius: 20px; padding: 24px 22px; }
+.camp-lista h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--cor-destaque); margin-bottom: 14px; }
+.camp-lista ul { list-style: none; display: grid; gap: 10px; }
+.camp-lista li { display: flex; align-items: center; gap: 14px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--borda); border-radius: 12px; padding: 12px 14px; color: #fff; font-weight: 600; }
+.camp-lista li .ico { width: 38px; height: 38px; flex: none; border-radius: 50%; border: 2px solid var(--cor-destaque); color: var(--cor-destaque); display: grid; place-items: center; }
+.camp-lista li .ico .icone { width: 20px; height: 20px; }
+@media (max-width: 900px) {
+    .camp-card { grid-template-columns: 1fr; gap: 28px; padding: 36px 24px; }
+}
+@media (max-width: 480px) {
+    .camp-card { padding: 30px 18px; border-radius: 22px; }
+    .camp-card .hero-botoes .btn { width: 100%; }
+}
+
+/* ---------- AVISO NO CATÁLOGO (aba Baterias) ---------- */
+.camp-mini { display: flex; gap: 14px; align-items: center; background: linear-gradient(90deg, #1d1a05, #131317); border: 1px solid #4a3f10; border-radius: 14px; padding: 14px 18px; margin: 0 0 14px; color: #e8e8ee; font-size: 0.93rem; }
+.camp-mini .icone { color: var(--cor-destaque); width: 26px; height: 26px; flex: none; }
+.camp-mini strong { color: var(--cor-destaque); }
+.camp-mini a { color: var(--cor-destaque); font-weight: 700; white-space: nowrap; }
+@media (max-width: 600px) {
+    .camp-mini { padding: 12px 14px; font-size: 0.86rem; align-items: flex-start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .camp-modal, .camp-janela { transition: none; }
+}

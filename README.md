@@ -142,3 +142,19 @@ Depois da reforma, estes arquivos não são mais usados pelo site (os `*-opt.web
 - `assets/img/`: `imagem-hero.webp`, `fachada-frente.webp`, `interno-loja.webp`, `loja-barracao.webp`, `loja-box-oleo.webp`, `loja-interno.webp`, `servico-elevador.webp`, `vitrine-motul.webp`, `vitrine-moura.webp`, `vitrine-vonixx.webp`, `vitrine-wega.webp`, `logo-empresa.webp`
 - `assets/produtos/`: `Linha_AGM.png`, `linha_leve.png`, `Linha_pesada.png`, `linha-EFB.webp`, `linha-moto.png`, `Zetta-leve.png`, `zetta-pesada.png`
 - A pasta `_backup-antes-da-reforma` guarda a versão anterior do site; apague quando não precisar mais.
+
+## Campanha de fim de ano (baterias + prêmios)
+
+Arquivos: `js/campanha.js`, `css/campanha.css` e os blocos marcados com `data-campanha` / `data-camp-nota` em `index.html` e `catalogo.html`.
+
+- **Configuração**: no topo de `js/campanha.js`, objeto `CAMP`:
+  - `fim`: data final (depois dela faixa, pop-up e blocos somem sozinhos). Para encerrar antes, coloque uma data passada.
+  - `validaAte`: texto exibido ("31/12/2026").
+  - `regulamento`: texto do certificado de autorização/regulamento (aparece no pop-up e na seção). Hoje está vazio.
+  - `diasSemReaparecer`: depois de fechado, o pop-up só volta após esse número de dias (7).
+  - `atrasoPopup`: tempo até abrir sozinho, em milissegundos (7000).
+  - `whats`: WhatsApp do botão "Quero participar".
+- **Onde aparece**: faixa amarela no topo (todas as páginas, exceto a de obrigado), pop-up automático só na página inicial e no catálogo (nunca na troca de óleo), seção na home e aviso na aba Baterias.
+- **Pré-visualizar**: abra qualquer página com `?campanha=1` no final do endereço.
+- **Textos**: pop-up e faixa em `js/campanha.js`; seção da home em `index.html` (id `campanha`); aviso do catálogo em `catalogo.html` (classe `camp-mini`).
+- **Encerrar de vez**: apague `data-campanha` blocks, os links de `campanha.css`/`campanha.js` nas 3 páginas.

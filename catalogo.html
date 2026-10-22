@@ -20,6 +20,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/campanha.css">
     <link rel="stylesheet" href="css/catalogo.css">
 
     <link rel="canonical" href="https://ferrarilubrificantes.com.br/catalogo.html">
@@ -45,7 +46,7 @@
 }
     </script>
 </head>
-<body>
+<body data-pagina="produtos">
     <div class="topbar">
         <div class="container container-topbar">
             <div class="topbar-info">
@@ -97,11 +98,12 @@
         <!-- Atalho: aparece só na aba "Todos" -->
         <div class="cat-cta-box" id="cat-cta">
             <button class="cat-cta" type="button" data-cat="baterias"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="16" height="10" rx="2"/><path d="M22 11v2"/><path d="m10.5 9.5-2 3h3l-2 3"/></svg><span>Procurando bateria de carro ou caminhão? <strong>Descubra qual serve no seu veículo →</strong></span></button>
-            <button class="cat-cta" type="button" data-cat="baterias_moto"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="18.5" cy="17.5" r="3.5"/><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="15" cy="5" r="1"/><path d="M12 17.5V14l-3-3 4-3 2 3h2"/></svg><span>Procurando bateria de moto? <strong>Descubra qual serve na sua moto →</strong></span></button>
+            <button class="cat-cta" type="button" data-cat="baterias_moto"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="17.5" r="3.5"/><circle cx="18.5" cy="17.5" r="3.5"/><path d="M9 17.5h6l-3-7H9"/><path d="m15 10.5 2-4.5h2"/></svg><span>Procurando bateria de moto? <strong>Descubra qual serve na sua moto →</strong></span></button>
         </div>
 
         <!-- Bloco de baterias: aparece só na aba "Baterias", acima dos itens -->
         <div id="bloco-bateria" hidden>
+            <div class="camp-mini" data-campanha><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg><span><strong>Campanha de fim de ano:</strong> na compra de uma bateria você concorre a ar-condicionado, bicicleta e muitos prêmios. <a href="#" data-camp-abrir>Saiba mais</a></span></div>
             <p class="cat-aviso-estoque"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7 12 12l8.7-5"/><path d="M12 22V12"/></svg><span><strong>Prazo:</strong> trabalhamos com estoque das baterias, mas se algum modelo estiver em falta na semana, fazemos a encomenda e ele chega em <strong>1 a 2 semanas</strong>.</span></p>
             <section class="f-box">
                 <h2 id="f-titulo"><svg class="icone" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="7" width="16" height="10" rx="2"/><path d="M22 11v2"/><path d="m10.5 9.5-2 3h3l-2 3"/></svg> Qual bateria serve no seu veículo?</h2>
@@ -168,5 +170,6 @@
     <script src="data/baterias.js"></script>
     <script src="data/fotos.js"></script>
     <script src="js/catalogo.js"></script>
+    <script src="js/campanha.js" defer></script>
 </body>
 </html>
